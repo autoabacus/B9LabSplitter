@@ -1,0 +1,51 @@
+Solidity Hungarian.txt started 2017.02.17
+------------------
+
+Note: This is subject to change!
+      I am not suggesting this for anybody else.
+      It is just for me and my pedantic coding style.
+
+Variable Naming Convention
+==========================
+Visibility          Name Starts with:
+----------
+private             p plus s, m, r from the "Where/How" list below
+public              u "
+constant            c plus name in all caps
+local (stack)       k
+Passed by Value     v
+
+Where/How           Second letter for p and u visibility variables
+---------
+storage             s
+memory              m
+Passed by Reference r
+
+Type      Name ends with capital letter
+----
+uint      U or nothing as the default
+address   A
+bool      B Also sometimes used for functions returning a bool
+string    S Also used for functions returning a string
+struct    R plus struct declaration names start with R_ Capital letter
+enum      N plus enum   declaration names start with N_ Capital letter
+
+Second Last Letter or last if default type uint with no "U"
+Y  array    (not A to be unique, leaving A for address)
+M  mapping
+
+Other conventions
+A variable name ending in 'X' is a uint array index.
+
+Visibility
+----------
+Explicitly mark visibility in functions and state variables
+from https://github.com/ConsenSys/smart-contract-best-practices#explicitly-mark-visibility-in-functions-and-state-variables
+
+Explicitly label the visibility of functions and state variables.
+Labeling the visibility explicitly will make it easier to catch incorrect assumptions about who can call the function or access the variable.
+
+Functions can be specified as being external, public, internal or private.
+
+For state variables, external is not possible.
+
