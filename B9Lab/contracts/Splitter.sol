@@ -3,8 +3,8 @@ pragma solidity ^0.4.8;
 /* B9Lab Splitter Assignment
 
 2017.02.18 0.0.0
-2017.02.21 0.0.1 getOwnerAddress() added
-2017.02.22 0.0.2 After Xavier's comments
+2017.02.20 0.0.1 getOwnerAddress() added
+2017.02.21 0.0.2 After Xavier's comments
 
 ToDo
 ====
@@ -76,7 +76,7 @@ contract Splitter {
   //   return this.balance;
   // }
 
-  // 2017.02.22 Modifier removed from all constant public functions on Xavier's advice: With a recent Solidity compiler, sending Ether to a constant function will throw.
+  // 2017.02.21 Modifier removed from all constant public functions on Xavier's advice: With a recent Solidity compiler, sending Ether to a constant function will throw.
   function getOwnerAddress() constant returns (address) {
     return psOwnerA;
   }
