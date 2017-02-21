@@ -5692,21 +5692,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "name": "getVersion",
         "outputs": [
           {
-            "name": "",
+            "name": "VersionS",
             "type": "string"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "getBalance",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
           }
         ],
         "payable": false,
@@ -5817,27 +5804,27 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "inputs": [
           {
             "indexed": false,
-            "name": "",
+            "name": "OwnerA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "EthersU",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "AliceA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "BobA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "CarolA",
             "type": "address"
           }
         ],
@@ -5849,12 +5836,12 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "inputs": [
           {
             "indexed": false,
-            "name": "",
+            "name": "SenderA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiSentU",
             "type": "uint256"
           }
         ],
@@ -5866,22 +5853,22 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "inputs": [
           {
             "indexed": false,
-            "name": "",
+            "name": "SenderA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiSentU",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiToBobU",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiToCarolU",
             "type": "uint256"
           }
         ],
@@ -5889,34 +5876,34 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405260405160608061070e8339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a03199092169190911760ff191682558416151561005a57610000565b80600160a060020a031683600160a060020a0316141561007957610000565b80600160a060020a031682600160a060020a0316141561009857610000565b83600160a060020a031683600160a060020a031614156100b757610000565b83600160a060020a031682600160a060020a031614156100d657610000565b82600160a060020a031682600160a060020a031614156100f557610000565b60018054600160a060020a03808716600160a060020a03199283161783556002805487831690841617905560038054918616919092161790556000805460ff19168280021790555060408051600160a060020a0333811682523460208301528087168284015280861660608301528416608082015290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b505050505b610563806101ab6000396000f3006060604052361561007d5763ffffffff60e060020a6000350416630c4f65bd81146100d35780630d8e6e2c146100fc57806312065fe0146101895780631865c57d146101a85780633f868b0f146101d6578063b603cd80146101ff578063bf778f5214610220578063e304b0b414610249578063f765417614610272575b6100d15b60003411156100ce5760408051600160a060020a033316815234602082015281517ffa8bac16361c726fa58d6585227e1605c858d37437032b47837e5357dbb59503929181900390910190a15b5b565b005b34610000576100e061028e565b60408051600160a060020a039092168252519081900360200190f35b34610000576101096102c1565b60408051602080825283518183015283519192839290830191850190808383821561014f575b80518252602083111561014f57601f19909201916020918201910161012f565b505050905090810190601f16801561017b5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3461000057610196610306565b60408051918252519081900360200190f35b34610000576101b5610333565b6040518082600281116100005760ff16815260200191505060405180910390f35b34610000576100e061033d565b60408051600160a060020a039092168252519081900360200190f35b346100005761020c61036b565b604080519115158252519081900360200190f35b34610000576100e06103a4565b60408051600160a060020a039092168252519081900360200190f35b34610000576100e06103d2565b60408051600160a060020a039092168252519081900360200190f35b61020c610400565b604080519115158252519081900360200190f35b6000600160005460ff166002811161000057146102aa57610000565b506000546101009004600160a060020a03165b5b90565b604080516020818101835260009091528151808301909252600582527f302e302e31000000000000000000000000000000000000000000000000000000908201525b90565b6000600160005460ff1660028111610000571461032257610000565b50600160a060020a033016315b5b90565b60005460ff165b90565b6000600160005460ff1660028111610000571461035957610000565b50600154600160a060020a03165b5b90565b6000805433600160a060020a0390811661010090920416141561039d57506000805460ff1916600217905560016102bd565b5060005b90565b6000600160005460ff166002811161000057146103c057610000565b50600354600160a060020a03165b5b90565b6000600160005460ff166002811161000057146103ee57610000565b50600254600160a060020a03165b5b90565b60008080600160005460ff1660028111610000571461041e57610000565b34151561042a57610000565b60015433600160a060020a039081169116141561050b57505060028054604051349283049283900391600160a060020a0316906108fc8415029084906000818181858888f19350505050151561047f57610000565b600354604051600160a060020a039091169082156108fc029083906000818181858888f1935050505015156104b357610000565b60408051600160a060020a03331681523460208201528082018490526060810183905290517f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c749181900360800190a160019250610531565b604051600160a060020a033016903480156108fc02916000818181858888f19650505050505b5b5050905600a165627a7a72305820eb4070fb933b3681f09913479a82ff8a5e46d8c223331e29143efab740174c3a0029",
+    "unlinked_binary": "0x606060405260405160608061065a8339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316151561005757610000565b600160a060020a038216151561006c57610000565b600160a060020a038116151561008157610000565b82600160a060020a031682600160a060020a031614156100a057610000565b82600160a060020a031681600160a060020a031614156100bf57610000565b81600160a060020a031681600160a060020a031614156100de57610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6104d2806101886000396000f300606060405236156100725763ffffffff60e060020a6000350416630c4f65bd81146100c85780630d8e6e2c146100f15780631865c57d1461017e5780633f868b0f146101ac578063b603cd80146101d5578063bf778f52146101f6578063e304b0b41461021f578063f765417614610248575b6100c65b60003411156100c35760408051600160a060020a033316815234602082015281517ffa8bac16361c726fa58d6585227e1605c858d37437032b47837e5357dbb59503929181900390910190a15b5b565b005b34610000576100d5610264565b60408051600160a060020a039092168252519081900360200190f35b34610000576100fe610279565b604080516020808252835181830152835191928392908301918501908083838215610144575b80518252602083111561014457601f199092019160209182019101610124565b505050905090810190601f1680156101705780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b346100005761018b6102be565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576100d56102c8565b60408051600160a060020a039092168252519081900360200190f35b34610000576101e26102d8565b604080519115158252519081900360200190f35b34610000576100d561032e565b60408051600160a060020a039092168252519081900360200190f35b34610000576100d561033e565b60408051600160a060020a039092168252519081900360200190f35b6101e261034e565b604080519115158252519081900360200190f35b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e32000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600154600160a060020a03165b90565b60008060005460ff166001811161000057146102f357610000565b60005433600160a060020a0390811661010090920416141561032557506000805460ff19166001908117909155610276565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b600080808060005460ff1660018111610000571461036b57610000565b34151561037757610000565b60015433600160a060020a039081169116141561045857505060028054604051349283049283900391600160a060020a0316906108fc8415029084906000818181858888f1935050505015156103cc57610000565b600354604051600160a060020a039091169082156108fc029083906000818181858888f19350505050151561040057610000565b60408051600160a060020a03331681523460208201528082018490526060810183905290517f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c749181900360800190a1600192506104a0565b60408051600160a060020a033316815234602082015281517ffa8bac16361c726fa58d6585227e1605c858d37437032b47837e5357dbb59503929181900390910190a1600192505b5b5050905600a165627a7a72305820ca8b3cf1df18509872c8793ad720252858d2fca374105f3be64d1ca00ebcae9c0029",
     "events": {
       "0x6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c9": {
         "anonymous": false,
         "inputs": [
           {
             "indexed": false,
-            "name": "",
+            "name": "OwnerA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "EthersU",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "AliceA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "BobA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "CarolA",
             "type": "address"
           }
         ],
@@ -5928,12 +5915,12 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "inputs": [
           {
             "indexed": false,
-            "name": "",
+            "name": "SenderA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiSentU",
             "type": "uint256"
           }
         ],
@@ -5945,22 +5932,22 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "inputs": [
           {
             "indexed": false,
-            "name": "",
+            "name": "SenderA",
             "type": "address"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiSentU",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiToBobU",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "",
+            "name": "WeiToCarolU",
             "type": "uint256"
           }
         ],
@@ -5968,9 +5955,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1487670789096,
+    "updated_at": 1487699343149,
     "links": {},
-    "address": "0xc6f8ba7e6646bef5d6d1f96bb516900e87c051c0"
+    "address": "0xac600a870081ecaac898af03c76e86540e2497e0"
   }
 };
 
@@ -43162,9 +43149,10 @@ window.addEventListener('load', function() {
 
  
 
+// 2017.021.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
+
 var SdepFn; // Splitter.deployed()
 var ContractA, OwnerA, AliceA, BobA, CarolA; // Addresses
-var WhoA, WhoS;
 var Errors;
 
 // Utility fns
@@ -43176,45 +43164,61 @@ function SetAddress(addrA, whoS) {
   document.getElementById(whoS+"Addr").innerHTML = addrA;
 };
 
-function SetWho(whoI) {
-  switch (whoI) {
-    case 0: WhoS = "Contract"; WhoA = ContractA; break;
-    case 1: WhoS = "Owner";    WhoA = OwnerA;    break;
-    case 2: WhoS = "Alice";    WhoA = AliceA;    break;
-    case 3: WhoS = "Bob";      WhoA = BobA;      break;
-    case 4: WhoS = "Carol";    WhoA = CarolA;    break;
-    case 5: WhoS = "Any";
-      var addS = document.getElementById("AnyAddr").value;
-      if (!addS.length) {
-        SetStatus("Please enter a valid address for 'Anyone'");
-        WhoA = null;
-      }else
-        WhoA = addS; // no checking other than for zero length!
-      break;
+function GetWhoObj(whoI) {
+  var all = [
+    { whoS: "Contract", whoA: ContractA },
+    { whoS: "Owner", whoA: OwnerA },
+    { whoS: "Alice", whoA: AliceA },
+    { whoS: "Bob",   whoA: BobA   },
+    { whoS: "Carol", whoA: CarolA },
+    { whoS: "Any",   whoA: null   }
+  ];
+  var whoO = all[whoI];
+  if (whoO.whoA == null) {
+    // Any
+    var addS = document.getElementById("AnyAddr").value;
+    if (!addS.length)
+      SetStatus("Please enter a valid address for 'Anyone'");
+    else
+      whoO.whoA = addS; // no checking other than for zero length!
   }
+  return whoO;
 }
 
-// Requires SetWho() to have been called first to set WhoS and WhoA
-function SetBalance() {
+function SetBalance(whoI) {
+  var whoO = GetWhoObj(whoI);
+  if (!whoO.whoA) return; // Expected to happen only for Any with no address entered
+  /*
   try {
-    document.getElementById(WhoS + "Ethers").innerHTML = web3.fromWei(web3.eth.getBalance(WhoA), "ether");
+    document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(web3.eth.getBalance(whoO.whoA), "ether");
   }
   catch(err) {
     Errors++;
-    var msgS = "Error getting balance for " + WhoS;
+    var msgS = "Error getting balance for " + whoO.whoS;
     console.log(msgS);
-    //console.log(err); errors with invalid address for err
+    console.log(err);
     SetStatus(msgS + " - see log.");
   };
+  */
+  // 201702.21 Rewritten following Xavier's comment: Prefer using the asynchronous methods to accommodate MetaMask at least
+  web3.eth.getBalance(whoO.whoA, function(error, result) {
+    if (!error)
+      document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(result, "ether");
+    else {
+      Errors++;
+      var msgS = "Error getting balance for " + whoO.whoS;
+      console.log(msgS);
+      console.error(""+error);
+      SetStatus(msgS + " - see log.");
+    }
+  });
 }
 
 function RefreshBalances() {
   SetStatus("Refreshing balances...");
   Errors = 0;
-  for (var iX=0; iX<=5; iX++) {
-    SetWho(iX);
-    if (WhoA != null) SetBalance();
-  }
+  for (var iX=0; iX<=5; iX++)
+    SetBalance(iX);
   if (!Errors)
     SetStatus("Balances refreshed");
 };
@@ -43226,46 +43230,43 @@ function Refresh() {
 
 function Send(fromNumS) {
   var amtD;
-  SetWho(Number(fromNumS));
-  if (!WhoA) return; // null in the Any case with no address
-  amtD = parseFloat(document.getElementById(WhoS + "Amt").value);
-  if (isNaN(amtD)) {
-    SetStatus("Please enter a valid positive non-zero 'Ethers to Send' numeric value for " + WhoS + " to send");
+  var whoO = GetWhoObj(Number(fromNumS));
+  if (!whoO.whoA) return; // null in the Any case with no address
+  // Xavier: You can stay with strings since Web3 will convert strings to big numbers anyway.
+  // But left as it was for the bit of basic input validation performed
+  amtD = parseFloat(document.getElementById(whoO.whoS + "Amt").value);
+  if (isNaN(amtD) || amtD <= 0.0) {
+    SetStatus("Please enter a positive non-zero 'Ethers to Send' number to send from " + whoO.whoS);
     return;
   }
-  if (amtD <= 0.0) {
-    SetStatus("Please enter a positive non-zero 'Ethers to Send' number to send to " + WhoS);
-    return;
-  }
-  var msgS = "Sending " + amtD + " Ethers to Splitter.split() from " + WhoS;
+  var msgS = "Sending " + amtD + " Ethers to Splitter.split() from " + whoO.whoS;
   SetStatus(msgS + " ... (Hold on while this transaction is added to the blockchain if it is valid.)");
   console.log(msgS);
-//SdepFn.split({from: WhoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
-  SdepFn.split({from: WhoA, value: web3.toWei(amtD, "ether")}).then(function(result) {
+//SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
+  SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")}).then(function(result) {
     console.log("Result: " + result);
     SetStatus("Transaction complete!");
     RefreshBalances();
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error " + msgS + " - see log.");
   });
 };
-
 
 // Event fns
 window.onload = function() {
   SdepFn = Splitter.deployed();
   // Addresses
-  // This method of getting the contract address works but it gives:
+  // This method of getting the contract address works but it gives a warning:
   // Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check
   // What function can be used?
-  ContractA = SdepFn.address;
+  ContractA = Splitter.address;
   SetAddress(ContractA, "Contract");
 
   SdepFn.getVersion.call().then(function(result) {
     document.getElementById("Version").innerHTML = result;
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Splitter version");
     return;
   });
@@ -43274,7 +43275,7 @@ window.onload = function() {
     OwnerA = result;
     SetAddress(OwnerA, "Owner");
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Owner address");
     return;
   });
@@ -43283,7 +43284,7 @@ window.onload = function() {
     AliceA = result;
     SetAddress(AliceA, "Alice");
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Alice address");
     return;
   });
@@ -43292,7 +43293,7 @@ window.onload = function() {
     BobA = result;
     SetAddress(BobA, "Bob");
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Bob address");
     return;
   });
@@ -43303,8 +43304,8 @@ window.onload = function() {
     // LoadedB = true;
     RefreshBalances(); // Here so not called before addresses have been set. ok if done in C, A, B, C order?
   }).catch(function(e) {
-    console.log(e);
-    SetStatus("Error getting Carol address");
+    console.error(""+e);
+    // SetStatus("Error getting Carol address");
     return;
   });
 

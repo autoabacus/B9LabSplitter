@@ -1,6 +1,7 @@
+// 2017.021.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
+
 var SdepFn; // Splitter.deployed()
 var ContractA, OwnerA, AliceA, BobA, CarolA; // Addresses
-var WhoA, WhoS;
 var Errors;
 
 // Utility fns
@@ -12,45 +13,61 @@ function SetAddress(addrA, whoS) {
   document.getElementById(whoS+"Addr").innerHTML = addrA;
 };
 
-function SetWho(whoI) {
-  switch (whoI) {
-    case 0: WhoS = "Contract"; WhoA = ContractA; break;
-    case 1: WhoS = "Owner";    WhoA = OwnerA;    break;
-    case 2: WhoS = "Alice";    WhoA = AliceA;    break;
-    case 3: WhoS = "Bob";      WhoA = BobA;      break;
-    case 4: WhoS = "Carol";    WhoA = CarolA;    break;
-    case 5: WhoS = "Any";
-      var addS = document.getElementById("AnyAddr").value;
-      if (!addS.length) {
-        SetStatus("Please enter a valid address for 'Anyone'");
-        WhoA = null;
-      }else
-        WhoA = addS; // no checking other than for zero length!
-      break;
+function GetWhoObj(whoI) {
+  var all = [
+    { whoS: "Contract", whoA: ContractA },
+    { whoS: "Owner", whoA: OwnerA },
+    { whoS: "Alice", whoA: AliceA },
+    { whoS: "Bob",   whoA: BobA   },
+    { whoS: "Carol", whoA: CarolA },
+    { whoS: "Any",   whoA: null   }
+  ];
+  var whoO = all[whoI];
+  if (whoO.whoA == null) {
+    // Any
+    var addS = document.getElementById("AnyAddr").value;
+    if (!addS.length)
+      SetStatus("Please enter a valid address for 'Anyone'");
+    else
+      whoO.whoA = addS; // no checking other than for zero length!
   }
+  return whoO;
 }
 
-// Requires SetWho() to have been called first to set WhoS and WhoA
-function SetBalance() {
+function SetBalance(whoI) {
+  var whoO = GetWhoObj(whoI);
+  if (!whoO.whoA) return; // Expected to happen only for Any with no address entered
+  /*
   try {
-    document.getElementById(WhoS + "Ethers").innerHTML = web3.fromWei(web3.eth.getBalance(WhoA), "ether");
+    document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(web3.eth.getBalance(whoO.whoA), "ether");
   }
   catch(err) {
     Errors++;
-    var msgS = "Error getting balance for " + WhoS;
+    var msgS = "Error getting balance for " + whoO.whoS;
     console.log(msgS);
-    //console.log(err); errors with invalid address for err
+    console.log(err);
     SetStatus(msgS + " - see log.");
   };
+  */
+  // 201702.21 Rewritten following Xavier's comment: Prefer using the asynchronous methods to accommodate MetaMask at least
+  web3.eth.getBalance(whoO.whoA, function(error, result) {
+    if (!error)
+      document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(result, "ether");
+    else {
+      Errors++;
+      var msgS = "Error getting balance for " + whoO.whoS;
+      console.log(msgS);
+      console.error(""+error);
+      SetStatus(msgS + " - see log.");
+    }
+  });
 }
 
 function RefreshBalances() {
   SetStatus("Refreshing balances...");
   Errors = 0;
-  for (var iX=0; iX<=5; iX++) {
-    SetWho(iX);
-    if (WhoA != null) SetBalance();
-  }
+  for (var iX=0; iX<=5; iX++)
+    SetBalance(iX);
   if (!Errors)
     SetStatus("Balances refreshed");
 };
@@ -62,46 +79,43 @@ function Refresh() {
 
 function Send(fromNumS) {
   var amtD;
-  SetWho(Number(fromNumS));
-  if (!WhoA) return; // null in the Any case with no address
-  amtD = parseFloat(document.getElementById(WhoS + "Amt").value);
-  if (isNaN(amtD)) {
-    SetStatus("Please enter a valid positive non-zero 'Ethers to Send' numeric value for " + WhoS + " to send");
+  var whoO = GetWhoObj(Number(fromNumS));
+  if (!whoO.whoA) return; // null in the Any case with no address
+  // Xavier: You can stay with strings since Web3 will convert strings to big numbers anyway.
+  // But left as it was for the bit of basic input validation performed
+  amtD = parseFloat(document.getElementById(whoO.whoS + "Amt").value);
+  if (isNaN(amtD) || amtD <= 0.0) {
+    SetStatus("Please enter a positive non-zero 'Ethers to Send' number to send from " + whoO.whoS);
     return;
   }
-  if (amtD <= 0.0) {
-    SetStatus("Please enter a positive non-zero 'Ethers to Send' number to send to " + WhoS);
-    return;
-  }
-  var msgS = "Sending " + amtD + " Ethers to Splitter.split() from " + WhoS;
+  var msgS = "Sending " + amtD + " Ethers to Splitter.split() from " + whoO.whoS;
   SetStatus(msgS + " ... (Hold on while this transaction is added to the blockchain if it is valid.)");
   console.log(msgS);
-//SdepFn.split({from: WhoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
-  SdepFn.split({from: WhoA, value: web3.toWei(amtD, "ether")}).then(function(result) {
+//SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
+  SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")}).then(function(result) {
     console.log("Result: " + result);
     SetStatus("Transaction complete!");
     RefreshBalances();
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error " + msgS + " - see log.");
   });
 };
-
 
 // Event fns
 window.onload = function() {
   SdepFn = Splitter.deployed();
   // Addresses
-  // This method of getting the contract address works but it gives:
+  // This method of getting the contract address works but it gives a warning:
   // Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check
   // What function can be used?
-  ContractA = SdepFn.address;
+  ContractA = Splitter.address;
   SetAddress(ContractA, "Contract");
 
   SdepFn.getVersion.call().then(function(result) {
     document.getElementById("Version").innerHTML = result;
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Splitter version");
     return;
   });
@@ -110,7 +124,7 @@ window.onload = function() {
     OwnerA = result;
     SetAddress(OwnerA, "Owner");
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Owner address");
     return;
   });
@@ -119,7 +133,7 @@ window.onload = function() {
     AliceA = result;
     SetAddress(AliceA, "Alice");
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Alice address");
     return;
   });
@@ -128,7 +142,7 @@ window.onload = function() {
     BobA = result;
     SetAddress(BobA, "Bob");
   }).catch(function(e) {
-    console.log(e);
+    console.error(""+e);
     SetStatus("Error getting Bob address");
     return;
   });
@@ -139,8 +153,8 @@ window.onload = function() {
     // LoadedB = true;
     RefreshBalances(); // Here so not called before addresses have been set. ok if done in C, A, B, C order?
   }).catch(function(e) {
-    console.log(e);
-    SetStatus("Error getting Carol address");
+    console.error(""+e);
+    // SetStatus("Error getting Carol address");
     return;
   });
 
