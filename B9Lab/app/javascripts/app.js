@@ -76,7 +76,7 @@ function Send(fromNumS) {
     SetStatus("Please enter a positive non-zero 'Ethers to Send' number to send from " + whoO.whoS);
     return;
   }
-  var msgS = "Sending " + amtD + " ezthers to Splitter.split() from " + whoO.whoS;
+  var msgS = "Sending " + amtD + " ethers to Splitter.split() from " + whoO.whoS;
   SetStatus(msgS + " ... (Hold on while this transaction is added to the blockchain if it is valid.)");
   console.log(msgS);
 //SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
