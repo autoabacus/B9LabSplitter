@@ -5768,12 +5768,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "constant": false,
         "inputs": [],
         "name": "split",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
+        "outputs": [],
         "payable": true,
         "type": "function"
       },
@@ -5845,7 +5840,24 @@ var SolidityEvent = require("web3/lib/web3/event.js");
             "type": "uint256"
           }
         ],
-        "name": "OnReceipt",
+        "name": "OnFallbackReceipt",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "SenderA",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "WeiSentU",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnSplitReceipt",
         "type": "event"
       },
       {
@@ -5876,7 +5888,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405260405160608061065a8339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316151561005757610000565b600160a060020a038216151561006c57610000565b600160a060020a038116151561008157610000565b82600160a060020a031682600160a060020a031614156100a057610000565b82600160a060020a031681600160a060020a031614156100bf57610000565b81600160a060020a031681600160a060020a031614156100de57610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6104d2806101886000396000f300606060405236156100725763ffffffff60e060020a6000350416630c4f65bd81146100c85780630d8e6e2c146100f15780631865c57d1461017e5780633f868b0f146101ac578063b603cd80146101d5578063bf778f52146101f6578063e304b0b41461021f578063f765417614610248575b6100c65b60003411156100c35760408051600160a060020a033316815234602082015281517ffa8bac16361c726fa58d6585227e1605c858d37437032b47837e5357dbb59503929181900390910190a15b5b565b005b34610000576100d5610264565b60408051600160a060020a039092168252519081900360200190f35b34610000576100fe610279565b604080516020808252835181830152835191928392908301918501908083838215610144575b80518252602083111561014457601f199092019160209182019101610124565b505050905090810190601f1680156101705780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b346100005761018b6102be565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576100d56102c8565b60408051600160a060020a039092168252519081900360200190f35b34610000576101e26102d8565b604080519115158252519081900360200190f35b34610000576100d561032e565b60408051600160a060020a039092168252519081900360200190f35b34610000576100d561033e565b60408051600160a060020a039092168252519081900360200190f35b6101e261034e565b604080519115158252519081900360200190f35b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e32000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600154600160a060020a03165b90565b60008060005460ff166001811161000057146102f357610000565b60005433600160a060020a0390811661010090920416141561032557506000805460ff19166001908117909155610276565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b600080808060005460ff1660018111610000571461036b57610000565b34151561037757610000565b60015433600160a060020a039081169116141561045857505060028054604051349283049283900391600160a060020a0316906108fc8415029084906000818181858888f1935050505015156103cc57610000565b600354604051600160a060020a039091169082156108fc029083906000818181858888f19350505050151561040057610000565b60408051600160a060020a03331681523460208201528082018490526060810183905290517f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c749181900360800190a1600192506104a0565b60408051600160a060020a033316815234602082015281517ffa8bac16361c726fa58d6585227e1605c858d37437032b47837e5357dbb59503929181900390910190a1600192505b5b5050905600a165627a7a72305820ca8b3cf1df18509872c8793ad720252858d2fca374105f3be64d1ca00ebcae9c0029",
+    "unlinked_binary": "0x60606040526040516060806106338339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316158061005f5750600160a060020a038216155b806100715750600160a060020a038116155b1561007b57610000565b82600160a060020a031682600160a060020a031614806100ac575082600160a060020a031681600160a060020a0316145b806100c8575081600160a060020a031681600160a060020a0316145b156100d257610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6104b78061017c6000396000f300606060405236156100725763ffffffff60e060020a6000350416630c4f65bd81146100c85780630d8e6e2c146100f15780631865c57d1461017e5780633f868b0f146101ac578063b603cd80146101d5578063bf778f52146101f6578063e304b0b41461021f578063f765417614610248575b6100c65b60003411156100c35760408051600160a060020a033316815234602082015281517f39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da929181900390910190a15b5b565b005b34610000576100d5610252565b60408051600160a060020a039092168252519081900360200190f35b34610000576100fe610267565b604080516020808252835181830152835191928392908301918501908083838215610144575b80518252602083111561014457601f199092019160209182019101610124565b505050905090810190601f1680156101705780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b346100005761018b6102ac565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576100d56102b6565b60408051600160a060020a039092168252519081900360200190f35b34610000576101e26102c6565b604080519115158252519081900360200190f35b34610000576100d561031c565b60408051600160a060020a039092168252519081900360200190f35b34610000576100d561032c565b60408051600160a060020a039092168252519081900360200190f35b6100c661033c565b005b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e33000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600154600160a060020a03165b90565b60008060005460ff166001811161000057146102e157610000565b60005433600160a060020a0390811661010090920416141561031357506000805460ff19166001908117909155610264565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b6000808060005460ff1660018111610000571461035857610000565b34151561036457610000565b60015433600160a060020a039081169116141561044157505060028054604051349283049283900391600160a060020a0316906108fc8415029084906000818181858888f1935050505015156103b957610000565b600354604051600160a060020a039091169082156108fc029083906000818181858888f1935050505015156103ed57610000565b60408051600160a060020a03331681523460208201528082018490526060810183905290517f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c749181900360800190a1610485565b60408051600160a060020a033316815234602082015281517f85386e76988169e9b5a44648ef1df11680573918c0faa069383c03cfdce4d993929181900390910190a15b5b5b50505600a165627a7a72305820b5a9f80c47a49755b23f0fe6441d8188850aa943ce48b6c68cd9bb76fd6cceb00029",
     "events": {
       "0x6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c9": {
         "anonymous": false,
@@ -5953,11 +5965,45 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         ],
         "name": "OnSplit",
         "type": "event"
+      },
+      "0x39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "SenderA",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "WeiSentU",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnFallbackReceipt",
+        "type": "event"
+      },
+      "0x85386e76988169e9b5a44648ef1df11680573918c0faa069383c03cfdce4d993": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "SenderA",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "WeiSentU",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnSplitReceipt",
+        "type": "event"
       }
     },
-    "updated_at": 1487699343149,
+    "updated_at": 1487795787133,
     "links": {},
-    "address": "0xac600a870081ecaac898af03c76e86540e2497e0"
+    "address": "0xffbd44725094f7d66a1119f82405f7fdddd10c91"
   }
 };
 
@@ -43149,10 +43195,11 @@ window.addEventListener('load', function() {
 
  
 
-// 2017.021.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
+// 2017.02.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
+// 2017.02.22 Started on event handling, removed global address constants, added AllA instead
 
 var SdepFn; // Splitter.deployed()
-var ContractA, OwnerA, AliceA, BobA, CarolA; // Addresses
+var AllA; // array of {whoS, whoA} objects
 var Errors;
 
 // Utility fns
@@ -43165,15 +43212,7 @@ function SetAddress(addrA, whoS) {
 };
 
 function GetWhoObj(whoI) {
-  var all = [
-    { whoS: "Contract", whoA: ContractA },
-    { whoS: "Owner", whoA: OwnerA },
-    { whoS: "Alice", whoA: AliceA },
-    { whoS: "Bob",   whoA: BobA   },
-    { whoS: "Carol", whoA: CarolA },
-    { whoS: "Any",   whoA: null   }
-  ];
-  var whoO = all[whoI];
+  var whoO = AllA[whoI];
   if (whoO.whoA == null) {
     // Any
     var addS = document.getElementById("AnyAddr").value;
@@ -43185,31 +43224,26 @@ function GetWhoObj(whoI) {
   return whoO;
 }
 
+function AddressToWho(aA) {
+  for (var iX=0; iX<=5; iX++) {
+    if (AllA[iX].whoA == aA)
+      return AllA[iX].whoS;
+  }
+  // Not known
+  return aA;
+}
+
 function SetBalance(whoI) {
   var whoO = GetWhoObj(whoI);
   if (!whoO.whoA) return; // Expected to happen only for Any with no address entered
-  /*
-  try {
-    document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(web3.eth.getBalance(whoO.whoA), "ether");
-  }
-  catch(err) {
-    Errors++;
-    var msgS = "Error getting balance for " + whoO.whoS;
-    console.log(msgS);
-    console.log(err);
-    SetStatus(msgS + " - see log.");
-  };
-  */
-  // 201702.21 Rewritten following Xavier's comment: Prefer using the asynchronous methods to accommodate MetaMask at least
   web3.eth.getBalance(whoO.whoA, function(error, result) {
     if (!error)
       document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(result, "ether");
     else {
       Errors++;
       var msgS = "Error getting balance for " + whoO.whoS;
-      console.log(msgS);
-      console.error(""+error);
-      SetStatus(msgS + " - see log.");
+      console.error(msgS+": "+error);
+      SetStatus(msgS+" - see log.");
     }
   });
 }
@@ -43239,7 +43273,7 @@ function Send(fromNumS) {
     SetStatus("Please enter a positive non-zero 'Ethers to Send' number to send from " + whoO.whoS);
     return;
   }
-  var msgS = "Sending " + amtD + " Ethers to Splitter.split() from " + whoO.whoS;
+  var msgS = "Sending " + amtD + " ezthers to Splitter.split() from " + whoO.whoS;
   SetStatus(msgS + " ... (Hold on while this transaction is added to the blockchain if it is valid.)");
   console.log(msgS);
 //SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
@@ -43255,13 +43289,14 @@ function Send(fromNumS) {
 
 // Event fns
 window.onload = function() {
+  var contractA, ownerA, aliceA, bobA, carolA; // Addresses
   SdepFn = Splitter.deployed();
   // Addresses
   // This method of getting the contract address works but it gives a warning:
   // Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check
   // What function can be used?
-  ContractA = Splitter.address;
-  SetAddress(ContractA, "Contract");
+  contractA = Splitter.address;
+  SetAddress(contractA, "Contract");
 
   SdepFn.getVersion.call().then(function(result) {
     document.getElementById("Version").innerHTML = result;
@@ -43272,8 +43307,8 @@ window.onload = function() {
   });
 
   SdepFn.getOwnerAddress.call().then(function(result) {
-    OwnerA = result;
-    SetAddress(OwnerA, "Owner");
+    ownerA = result;
+    SetAddress(ownerA, "Owner");
   }).catch(function(e) {
     console.error(""+e);
     SetStatus("Error getting Owner address");
@@ -43281,8 +43316,8 @@ window.onload = function() {
   });
 
   SdepFn.getAliceAddress.call().then(function(result) {
-    AliceA = result;
-    SetAddress(AliceA, "Alice");
+    aliceA = result;
+    SetAddress(aliceA, "Alice");
   }).catch(function(e) {
     console.error(""+e);
     SetStatus("Error getting Alice address");
@@ -43290,8 +43325,8 @@ window.onload = function() {
   });
 
   SdepFn.getBobAddress.call().then(function(result) {
-    BobA = result;
-    SetAddress(BobA, "Bob");
+    bobA = result;
+    SetAddress(bobA, "Bob");
   }).catch(function(e) {
     console.error(""+e);
     SetStatus("Error getting Bob address");
@@ -43299,17 +43334,81 @@ window.onload = function() {
   });
 
   SdepFn.getCarolAddress.call().then(function(result) {
-    CarolA = result;
-    SetAddress(CarolA, "Carol");
+    SetAddress(carolA = result, "Carol");
     // LoadedB = true;
+    AllA = [
+      { whoS: "Contract", whoA: contractA }, // 0
+      { whoS: "Owner", whoA: ownerA },       // 1 account 0
+      { whoS: "Alice", whoA: aliceA },       // 2         1
+      { whoS: "Bob",   whoA: bobA   },       // 3         2
+      { whoS: "Carol", whoA: carolA },       // 4         3
+      { whoS: "Any",   whoA: null   }        // 5
+    ];
     RefreshBalances(); // Here so not called before addresses have been set. ok if done in C, A, B, C order?
+    LogContractCreationEvents();
+    LogSplitEvents();
+    LogSplitReceiptEvents();
+    LogFallbackReceiptEvents();
   }).catch(function(e) {
     console.error(""+e);
     // SetStatus("Error getting Carol address");
     return;
   });
-
   // RefreshBalances(); // Not here as this is invoked before the addresses have been set via the promises - in final "then" above.
   //                       It would be better to chain all these promises.
+} // end onload
 
+/* Event handlers
+  event OnCreation(address OwnerA, uint EthersU, address AliceA, address BobA, address CarolA); // Constructor
+  event OnFallbackReceipt(address SenderA, uint WeiSentU); // Received from sender via fallback fn if non-zero
+  event OnSplitReceipt(   address SenderA, uint WeiSentU); // Received from sender via a non-zero transaction to split()
+  event OnSplit(address SenderA, uint WeiSentU, uint WeiToBobU, uint WeiToCarolU); // Split on send from Alice, half to Bob, other half to Carol
+*/
+
+function LogContractCreationEvents() {
+  Splitter.deployed().OnCreation()
+    .watch(function (error, value) {
+      if (error)
+        console.error(error);
+      else{
+        console.log("Constructor: Owner " + value.args.OwnerA + " plus addresses " + value.args.AliceA +
+                    ", " + value.args.BobA + ", " + value.args.CarolA + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
+        console.log("Or Constructor: " + AddressToWho(value.args.OwnerA) + " plus addresses for " + AddressToWho(value.args.AliceA) +
+                    ", " + AddressToWho(value.args.BobA) + ", " + AddressToWho(value.args.CarolA) + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
+      }
+    //this.stopWatching(); djh?? Fix this
+    });
 }
+
+function LogFallbackReceiptEvents() {
+  Splitter.deployed().OnFallbackReceipt()
+    .watch(function (error, value) {
+      if (error)
+        console.error(error);
+      else
+        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent to contract from " + AddressToWho(value.args.SenderA) + " via fallback");
+    });
+}
+
+function LogSplitReceiptEvents() {
+  Splitter.deployed().OnSplitReceipt()
+    .watch(function (error, value) {
+      if (error)
+        console.error(error);
+      else
+        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent to contract from " + AddressToWho(value.args.SenderA) + " via Split()");
+    });
+}
+
+function LogSplitEvents() {
+  Splitter.deployed().OnSplit()
+    .watch(function (error, value) {
+      if (error)
+        console.error(error);
+      else
+        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent from " + AddressToWho(value.args.SenderA) + " to Split() split as " +
+                    web3.fromWei(value.args.WeiToBobU, "ether") + " ethers to Bob and " +
+                    web3.fromWei(value.args.WeiToCarolU, "ether") + " ethers to Carol");
+    });
+}
+
