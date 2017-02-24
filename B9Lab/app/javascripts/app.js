@@ -1,5 +1,6 @@
 // 2017.02.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
 // 2017.02.22 Started on event handling, removed global address constants, added AllA instead
+// 2017.02.24 Added use of getTransactionReceiptMined(); tidied up promises use in onload; fixed ending watch for constructor event
 
 var SdepFn; // Splitter.deployed()
 var AllA; // array of {whoS, whoA} objects
@@ -80,18 +81,54 @@ function Send(fromNumS) {
   SetStatus(msgS + " ... (Hold on while this transaction is added to the blockchain if it is valid.)");
   console.log(msgS);
 //SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
-  SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")}).then(function(result) {
-    console.log("Result: " + result);
-    SetStatus("Transaction complete!");
-    RefreshBalances();
-  }).catch(function(e) {
+  SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")})
+  .then(function(txHash) {
+    console.log("Result: " + txHash);
+    return web3.eth.getTransactionReceiptMined(txHash);
+  }, function(e) {
     console.error(""+e);
     SetStatus("Error " + msgS + " - see log.");
-  });
-};
+  })
+  .then(function() {
+    // The split() trans has been mined. Now update balances
+    RefreshBalances();
+    SetStatus("Transaction complete!");
+  })
+}
 
 // Event fns
 window.onload = function() {
+  // Xavier's helper function to promisify waiting for a transaction to be minded from the course notes or
+  web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
+    var transactionReceiptAsync;
+    interval = interval ? interval : 500;
+    transactionReceiptAsync = function(txnHash, resolve, reject) {
+      try {
+        var receipt = web3.eth.getTransactionReceipt(txnHash);
+        if (receipt == null) {
+          setTimeout(function () {
+            transactionReceiptAsync(txnHash, resolve, reject);
+          }, interval);
+        }else{
+          resolve(receipt);
+        }
+      } catch(e) {
+        reject(e);
+      }
+    };
+
+    if (Array.isArray(txnHash)) {
+      var promises = [];
+      txnHash.forEach(function (oneTxHash) {
+        promises.push(web3.eth.getTransactionReceiptMined(oneTxHash, interval));
+      });
+      return Promise.all(promises);
+    } else {
+      return new Promise(function (resolve, reject) {
+        transactionReceiptAsync(txnHash, resolve, reject);
+      });
+    }
+  };
   var contractA, ownerA, aliceA, bobA, carolA; // Addresses
   SdepFn = Splitter.deployed();
   // Addresses
@@ -101,44 +138,38 @@ window.onload = function() {
   contractA = Splitter.address;
   SetAddress(contractA, "Contract");
 
-  SdepFn.getVersion.call().then(function(result) {
+  SdepFn.getVersion.call()
+  .then(function(result) {
     document.getElementById("Version").innerHTML = result;
-  }).catch(function(e) {
+    return SdepFn.getOwnerAddress.call();
+  }, function(e) {
     console.error(""+e);
     SetStatus("Error getting Splitter version");
-    return;
-  });
-
-  SdepFn.getOwnerAddress.call().then(function(result) {
-    ownerA = result;
-    SetAddress(ownerA, "Owner");
-  }).catch(function(e) {
+  })
+  .then(function(result) {
+    SetAddress(ownerA = result, "Owner");
+    return SdepFn.getAliceAddress.call();
+  }, function(e) {
     console.error(""+e);
     SetStatus("Error getting Owner address");
-    return;
-  });
-
-  SdepFn.getAliceAddress.call().then(function(result) {
-    aliceA = result;
-    SetAddress(aliceA, "Alice");
-  }).catch(function(e) {
+  })
+  .then(function(result) {
+    SetAddress(aliceA = result, "Alice");
+    return SdepFn.getBobAddress.call();
+  }, function(e) {
     console.error(""+e);
     SetStatus("Error getting Alice address");
-    return;
-  });
-
-  SdepFn.getBobAddress.call().then(function(result) {
-    bobA = result;
-    SetAddress(bobA, "Bob");
-  }).catch(function(e) {
+  })
+  .then(function(result) {
+    SetAddress(bobA = result, "Bob");
+    return SdepFn.getCarolAddress.call();
+  }, function(e) {
     console.error(""+e);
     SetStatus("Error getting Bob address");
-    return;
-  });
-
-  SdepFn.getCarolAddress.call().then(function(result) {
+  })
+  .then(function(result) {
     SetAddress(carolA = result, "Carol");
-    // LoadedB = true;
+    // All addresses loaded
     AllA = [
       { whoS: "Contract", whoA: contractA }, // 0
       { whoS: "Owner", whoA: ownerA },       // 1 account 0
@@ -147,18 +178,15 @@ window.onload = function() {
       { whoS: "Carol", whoA: carolA },       // 4         3
       { whoS: "Any",   whoA: null   }        // 5
     ];
-    RefreshBalances(); // Here so not called before addresses have been set. ok if done in C, A, B, C order?
+    RefreshBalances();
     LogContractCreationEvents();
     LogSplitEvents();
     LogSplitReceiptEvents();
     LogFallbackReceiptEvents();
-  }).catch(function(e) {
+  }, function(e) {
     console.error(""+e);
-    // SetStatus("Error getting Carol address");
-    return;
+    SetStatus("Error getting Carol address");
   });
-  // RefreshBalances(); // Not here as this is invoked before the addresses have been set via the promises - in final "then" above.
-  //                       It would be better to chain all these promises.
 } // end onload
 
 /* Event handlers
@@ -169,18 +197,18 @@ window.onload = function() {
 */
 
 function LogContractCreationEvents() {
-  Splitter.deployed().OnCreation()
-    .watch(function (error, value) {
-      if (error)
-        console.error(error);
-      else{
-        console.log("Constructor: Owner " + value.args.OwnerA + " plus addresses " + value.args.AliceA +
-                    ", " + value.args.BobA + ", " + value.args.CarolA + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
-        console.log("Or Constructor: " + AddressToWho(value.args.OwnerA) + " plus addresses for " + AddressToWho(value.args.AliceA) +
-                    ", " + AddressToWho(value.args.BobA) + ", " + AddressToWho(value.args.CarolA) + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
-      }
-    //this.stopWatching(); djh?? Fix this
-    });
+  var onCreation = Splitter.deployed().OnCreation();
+  onCreation.watch(function (error, value) {
+    if (error)
+      console.error(error);
+    else{
+      console.log("Constructor: Owner " + value.args.OwnerA + " plus addresses " + value.args.AliceA +
+                  ", " + value.args.BobA + ", " + value.args.CarolA + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
+      console.log("Or Constructor: " + AddressToWho(value.args.OwnerA) + " plus addresses for " + AddressToWho(value.args.AliceA) +
+                  ", " + AddressToWho(value.args.BobA) + ", " + AddressToWho(value.args.CarolA) + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
+    }
+    onCreation.stopWatching();
+  });
 }
 
 function LogFallbackReceiptEvents() {
