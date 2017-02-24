@@ -33,6 +33,18 @@ web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
     }
 };
 
+// Get the Promise of a Web3 getBalance() call based on Xavier's Get the Promise of Web3 accounts at https://gist.github.com/xavierlepretre/ed82f210df0f9300493d5ca79893806a
+web3.eth.getBalancePromise = function(address) {
+  return new Promise(function (resolve, reject) {
+    web3.eth.getBalance(address, function(e, result) {
+      if (e)
+        reject(e);
+      else
+        resolve(result);
+    });
+  });
+};
+
 var AliceA = web3.eth.accounts[1],
     BobA   = web3.eth.accounts[2],
     CarolA = web3.eth.accounts[3];
@@ -133,11 +145,7 @@ var ContractA,
 contract('Split Test Not Alice', function() {
   it("Carol sends 7 wei to split() which should result in 7 -> the Contract", function () {
     ContractA = Splitter.address;
-    // console.log("ContractA "+ContractA);
-    return Splitter.deployed().getAliceAddress() // this is just to get the chain started. web3.eth.getBalance(ContractA) as the first call failed with .then not a function
-     .then(function () {
-        return web3.eth.getBalance(ContractA)
-      })
+    return web3.eth.getBalancePromise(ContractA)
       .then(function (result) {
         ContractBalAnteBN = result;
         return Splitter.deployed().split({from: CarolA, value: 7})
