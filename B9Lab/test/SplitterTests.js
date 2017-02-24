@@ -1,5 +1,18 @@
-// Xavier's helper to promisify web3 functions from https://gist.github.com/xavierlepretre/90f0feafccc07b267e44a87050b95caa
-const PromisifyWeb3 = require("../build/promisifyWeb3.js");
+// 2017.02.24 Version with Xavier's helper to promisify web3 functions from https://gist.github.com/xavierlepretre/90f0feafccc07b267e44a87050b95caa
+//            removed and getBalancePromise() as below used instead. The above worked within a chain with a contract() it() constructions but not as the first one,
+//            whereas getBalancePromise() works in all cases.
+
+// Get the Promise of a Web3 getBalance() call based on Xavier's Get the Promise of Web3 accounts at https://gist.github.com/xavierlepretre/ed82f210df0f9300493d5ca79893806a
+web3.eth.getBalancePromise = function(address) {
+  return new Promise(function (resolve, reject) {
+    web3.eth.getBalance(address, function(e, result) {
+      if (e)
+        reject(e);
+      else
+        resolve(result);
+    });
+  });
+};
 
 // Xavier's helper function to promisify waiting for a transaction to be minded from the course notes or
 web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
@@ -31,18 +44,6 @@ web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
                 transactionReceiptAsync(txnHash, resolve, reject);
             });
     }
-};
-
-// Get the Promise of a Web3 getBalance() call based on Xavier's Get the Promise of Web3 accounts at https://gist.github.com/xavierlepretre/ed82f210df0f9300493d5ca79893806a
-web3.eth.getBalancePromise = function(address) {
-  return new Promise(function (resolve, reject) {
-    web3.eth.getBalance(address, function(e, result) {
-      if (e)
-        reject(e);
-      else
-        resolve(result);
-    });
-  });
 };
 
 var AliceA = web3.eth.accounts[1],
@@ -116,11 +117,11 @@ web3.eth.getBalance(BobA, function(error, result) {
           })
           .then(function() {
             // The split() trans has mined. Now check balances
-            return web3.eth.getBalance(BobA);
+            return web3.eth.getBalancePromise(BobA);
           })
           .then(function(result) {
             BobBalPostBN = result;
-            return web3.eth.getBalance(CarolA);
+            return web3.eth.getBalancePromise(CarolA);
           })
           .then(function(result) {
             CarolBalPostBN = result;
@@ -155,7 +156,7 @@ contract('Split Test Not Alice', function() {
       })
       .then(function() {
         // The split() trans has mined. Now check balances
-        return web3.eth.getBalance(ContractA);
+        return web3.eth.getBalancePromise(ContractA);
       })
       .then(function(result) {
         ContractBalPostBN = result;
