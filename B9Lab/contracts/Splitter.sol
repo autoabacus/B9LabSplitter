@@ -108,7 +108,7 @@ contract Splitter {
       OnSplitReceipt(msg.sender, msg.value);
   }
 
-  // Function to
+  // Function to withdraw pending balances held for Bob or Carol
   function withdraw() returns (bool) {
     uint weiToWithdrawU;
     if (msg.sender == psBobA)

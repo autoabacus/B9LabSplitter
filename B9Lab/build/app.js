@@ -2,19 +2,19 @@
 
 /* @preserve
  * The MIT License (MIT)
- *
+ * 
  * Copyright (c) 2013-2015 Petka Antonov
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
+ * 
  */
 /**
  * bluebird build version 3.1.1
@@ -3284,28 +3284,28 @@ _dereq_('./promisify.js')(Promise, INTERNAL);
 _dereq_('./any.js')(Promise);
 _dereq_('./each.js')(Promise, INTERNAL);
 _dereq_('./filter.js')(Promise, INTERNAL);
-
-    util.toFastProperties(Promise);
-    util.toFastProperties(Promise.prototype);
-    function fillTypes(value) {
-        var p = new Promise(INTERNAL);
-        p._fulfillmentHandler0 = value;
-        p._rejectionHandler0 = value;
-        p._promise0 = value;
-        p._receiver0 = value;
-    }
-    // Complete slack tracking, opt out of field-type tracking and
-    // stabilize map
-    fillTypes({a: 1});
-    fillTypes({b: 2});
-    fillTypes({c: 3});
-    fillTypes(1);
-    fillTypes(function(){});
-    fillTypes(undefined);
-    fillTypes(false);
-    fillTypes(new Promise(INTERNAL));
-    debug.setBounds(Async.firstLineError, util.lastLineError);
-    return Promise;
+                                                         
+    util.toFastProperties(Promise);                                          
+    util.toFastProperties(Promise.prototype);                                
+    function fillTypes(value) {                                              
+        var p = new Promise(INTERNAL);                                       
+        p._fulfillmentHandler0 = value;                                      
+        p._rejectionHandler0 = value;                                        
+        p._promise0 = value;                                                 
+        p._receiver0 = value;                                                
+    }                                                                        
+    // Complete slack tracking, opt out of field-type tracking and           
+    // stabilize map                                                         
+    fillTypes({a: 1});                                                       
+    fillTypes({b: 2});                                                       
+    fillTypes({c: 3});                                                       
+    fillTypes(1);                                                            
+    fillTypes(function(){});                                                 
+    fillTypes(undefined);                                                    
+    fillTypes(false);                                                        
+    fillTypes(new Promise(INTERNAL));                                        
+    debug.setBounds(Async.firstLineError, util.lastLineError);               
+    return Promise;                                                          
 
 };
 
@@ -5918,7 +5918,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x60606040526040516060806107358339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316158061005f5750600160a060020a038216155b806100715750600160a060020a038116155b1561007b57610000565b82600160a060020a031682600160a060020a031614806100ac575082600160a060020a031681600160a060020a0316145b806100c8575081600160a060020a031681600160a060020a0316145b156100d257610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6105b98061017c6000396000f3006060604052361561007d5763ffffffff60e060020a6000350416630c4f65bd81146100d35780630d8e6e2c146100fc5780631865c57d146101895780633ccfd60b146101b75780633f868b0f146101d8578063b603cd8014610201578063bf778f5214610222578063e304b0b41461024b578063f765417614610274575b6100d15b60003411156100ce5760408051600160a060020a033316815234602082015281517f39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da929181900390910190a15b5b565b005b34610000576100e061027e565b60408051600160a060020a039092168252519081900360200190f35b3461000057610109610293565b60408051602080825283518183015283519192839290830191850190808383821561014f575b80518252602083111561014f57601f19909201916020918201910161012f565b505050905090810190601f16801561017b5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34610000576101966102d8565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576101c46102e2565b604080519115158252519081900360200190f35b34610000576100e0610405565b60408051600160a060020a039092168252519081900360200190f35b34610000576101c4610415565b604080519115158252519081900360200190f35b34610000576100e061046b565b60408051600160a060020a039092168252519081900360200190f35b34610000576100e061047b565b60408051600160a060020a039092168252519081900360200190f35b6100d161048b565b005b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e34000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600254600090819033600160a060020a0390811691161415610307575060045461032c565b60035433600160a060020a0390811691161415610327575060055461032c565b610000565b5b60008111156103fb5760025433600160a060020a039081169116141561035757600060045561035d565b60006005555b604051600160a060020a0333169082156108fc029083906000818181858888f19350505050156103d45760408051600160a060020a03331681526020810183905281517fefbfe3c015941f3419cd0c7f713fd74c6874d0da2d765adc7f700370ccd5ba5c929181900390910190a160019150610401565b60025433600160a060020a03908116911614156103f55760048190556103fb565b60058190555b5b600091505b5090565b600154600160a060020a03165b90565b60008060005460ff1660018111610000571461043057610000565b60005433600160a060020a0390811661010090920416141561032757506000805460ff19166001908117909155610290565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b6000808060005460ff166001811161000057146104a757610000565b3415156104b357610000565b60015433600160a060020a03908116911614156105435760023460048054929091049182019055600580543483810391820190925560408051600160a060020a03331681526020810193909352828101849052606083018290525192945092507f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c74919081900360800190a1610587565b60408051600160a060020a033316815234602082015281517f85386e76988169e9b5a44648ef1df11680573918c0faa069383c03cfdce4d993929181900390910190a15b5b5b50505600a165627a7a723058206f9a650c7b8ecb4b9575f1614dbcc68cae9a1bd03bdaee76ec08d61ff60a78810029",
+    "unlinked_binary": "0x60606040526040516060806107358339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316158061005f5750600160a060020a038216155b806100715750600160a060020a038116155b1561007b57610000565b82600160a060020a031682600160a060020a031614806100ac575082600160a060020a031681600160a060020a0316145b806100c8575081600160a060020a031681600160a060020a0316145b156100d257610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6105b98061017c6000396000f3006060604052361561007d5763ffffffff60e060020a6000350416630c4f65bd81146100d35780630d8e6e2c146100fc5780631865c57d146101895780633ccfd60b146101b75780633f868b0f146101d8578063b603cd8014610201578063bf778f5214610222578063e304b0b41461024b578063f765417614610274575b6100d15b60003411156100ce5760408051600160a060020a033316815234602082015281517f39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da929181900390910190a15b5b565b005b34610000576100e061027e565b60408051600160a060020a039092168252519081900360200190f35b3461000057610109610293565b60408051602080825283518183015283519192839290830191850190808383821561014f575b80518252602083111561014f57601f19909201916020918201910161012f565b505050905090810190601f16801561017b5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34610000576101966102d8565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576101c46102e2565b604080519115158252519081900360200190f35b34610000576100e0610405565b60408051600160a060020a039092168252519081900360200190f35b34610000576101c4610415565b604080519115158252519081900360200190f35b34610000576100e061046b565b60408051600160a060020a039092168252519081900360200190f35b34610000576100e061047b565b60408051600160a060020a039092168252519081900360200190f35b6100d161048b565b005b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e34000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600254600090819033600160a060020a0390811691161415610307575060045461032c565b60035433600160a060020a0390811691161415610327575060055461032c565b610000565b5b60008111156103fb5760025433600160a060020a039081169116141561035757600060045561035d565b60006005555b604051600160a060020a0333169082156108fc029083906000818181858888f19350505050156103d45760408051600160a060020a03331681526020810183905281517fefbfe3c015941f3419cd0c7f713fd74c6874d0da2d765adc7f700370ccd5ba5c929181900390910190a160019150610401565b60025433600160a060020a03908116911614156103f55760048190556103fb565b60058190555b5b600091505b5090565b600154600160a060020a03165b90565b60008060005460ff1660018111610000571461043057610000565b60005433600160a060020a0390811661010090920416141561032757506000805460ff19166001908117909155610290565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b6000808060005460ff166001811161000057146104a757610000565b3415156104b357610000565b60015433600160a060020a03908116911614156105435760023460048054929091049182019055600580543483810391820190925560408051600160a060020a03331681526020810193909352828101849052606083018290525192945092507f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c74919081900360800190a1610587565b60408051600160a060020a033316815234602082015281517f85386e76988169e9b5a44648ef1df11680573918c0faa069383c03cfdce4d993929181900390910190a15b5b5b50505600a165627a7a7230582018f0aa561d01c2d8683e51fa34c4ab84c0ec259c240d1335df783d443b0c0a870029",
     "events": {
       "0x6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c9": {
         "anonymous": false,
@@ -6048,9 +6048,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488290583613,
+    "updated_at": 1488292271913,
     "links": {},
-    "address": "0x18c22b4be82d7bf5f478ecb3eca72be4deb892a2"
+    "address": "0x9aa1f9d8bb3092419d99bc9f718e3fccac642ae6"
   }
 };
 
@@ -30112,7 +30112,7 @@ module.exports = function privateDecrypt(private_key, enc, reverse) {
   } else {
     padding = 4;
   }
-
+  
   var key = parseKeys(private_key);
   var k = key.modulus.byteLength();
   if (enc.length > k || new bn(enc).cmp(key.modulus) >= 0) {
@@ -33995,13 +33995,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-
+    
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-
+    
     document.body.appendChild(iframe);
-
+    
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -34010,7 +34010,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-
+    
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -34019,11 +34019,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-
+    
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-
+    
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -34038,9 +34038,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-
+    
     document.body.removeChild(iframe);
-
+    
     return res;
 };
 
@@ -34726,7 +34726,7 @@ module.exports = SolidityTypeBytes;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file coder.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -34756,7 +34756,7 @@ var SolidityCoder = function (types) {
  *
  * @method _requireType
  * @param {String} type
- * @returns {SolidityType}
+ * @returns {SolidityType} 
  * @throws {Error} throws if no matching type is found
  */
 SolidityCoder.prototype._requireType = function (type) {
@@ -34804,7 +34804,7 @@ SolidityCoder.prototype.encodeParams = function (types, params) {
         return acc + roundedStaticPartLength;
     }, 0);
 
-    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset);
+    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset); 
 
     return result;
 };
@@ -34829,7 +34829,7 @@ SolidityCoder.prototype.encodeMultiWithOffset = function (types, solidityTypes, 
 
         // TODO: figure out nested arrays
     });
-
+    
     types.forEach(function (type, i) {
         if (isDynamic(i)) {
             var e = self.encodeWithOffset(types[i], solidityTypes[i], encodeds[i], dynamicOffset);
@@ -34849,7 +34849,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
             var nestedName = solidityType.nestedName(type);
             var nestedStaticPartLength = solidityType.staticPartLength(nestedName);
             var result = encoded[0];
-
+            
             (function () {
                 var previousLength = 2; // in int
                 if (solidityType.isDynamicArray(nestedName)) {
@@ -34859,7 +34859,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
                     }
                 }
             })();
-
+            
             // first element is length, skip it
             (function () {
                 for (var i = 0; i < encoded.length - 1; i++) {
@@ -34870,7 +34870,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
 
             return result;
         })();
-
+       
     } else if (solidityType.isStaticArray(type)) {
         return (function () {
             var nestedName = solidityType.nestedName(type);
@@ -34883,7 +34883,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
                     var previousLength = 0; // in int
                     for (var i = 0; i < encoded.length; i++) {
                         // calculate length of previous item
-                        previousLength += +(encoded[i - 1] || [])[0] || 0;
+                        previousLength += +(encoded[i - 1] || [])[0] || 0; 
                         result += f.formatInputInt(offset + i * nestedStaticPartLength + previousLength * 32).encode();
                     }
                 })();
@@ -34926,7 +34926,7 @@ SolidityCoder.prototype.decodeParam = function (type, bytes) {
 SolidityCoder.prototype.decodeParams = function (types, bytes) {
     var solidityTypes = this.getSolidityTypes(types);
     var offsets = this.getOffsets(types, solidityTypes);
-
+        
     return solidityTypes.map(function (solidityType, index) {
         return solidityType.decode(bytes, offsets[index],  types[index], index);
     });
@@ -34936,16 +34936,16 @@ SolidityCoder.prototype.getOffsets = function (types, solidityTypes) {
     var lengths =  solidityTypes.map(function (solidityType, index) {
         return solidityType.staticPartLength(types[index]);
     });
-
+    
     for (var i = 1; i < lengths.length; i++) {
          // sum with length of previous element
-        lengths[i] += lengths[i - 1];
+        lengths[i] += lengths[i - 1]; 
     }
 
     return lengths.map(function (length, index) {
         // remove the current length, so the length is sum of previous elements
         var staticPartLength = solidityTypes[index].staticPartLength(types[index]);
-        return length - staticPartLength;
+        return length - staticPartLength; 
     });
 };
 
@@ -35015,7 +35015,7 @@ module.exports = SolidityTypeDynamicBytes;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file formatters.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -35159,7 +35159,7 @@ var formatOutputUInt = function (param) {
  * @returns {BigNumber} input bytes formatted to real
  */
 var formatOutputReal = function (param) {
-    return formatOutputInt(param).dividedBy(new BigNumber(2).pow(128));
+    return formatOutputInt(param).dividedBy(new BigNumber(2).pow(128)); 
 };
 
 /**
@@ -35170,7 +35170,7 @@ var formatOutputReal = function (param) {
  * @returns {BigNumber} input bytes formatted to ureal
  */
 var formatOutputUReal = function (param) {
-    return formatOutputUInt(param).dividedBy(new BigNumber(2).pow(128));
+    return formatOutputUInt(param).dividedBy(new BigNumber(2).pow(128)); 
 };
 
 /**
@@ -35305,7 +35305,7 @@ module.exports = SolidityTypeInt;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file param.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -35324,7 +35324,7 @@ var SolidityParam = function (value, offset) {
 
 /**
  * This method should be used to get length of params's dynamic part
- *
+ * 
  * @method dynamicPartLength
  * @returns {Number} length of dynamic part (in bytes)
  */
@@ -35352,7 +35352,7 @@ SolidityParam.prototype.withOffset = function (offset) {
  * @param {SolidityParam} result of combination
  */
 SolidityParam.prototype.combine = function (param) {
-    return new SolidityParam(this.value + param.value);
+    return new SolidityParam(this.value + param.value); 
 };
 
 /**
@@ -35384,8 +35384,8 @@ SolidityParam.prototype.offsetAsBytes = function () {
  */
 SolidityParam.prototype.staticPart = function () {
     if (!this.isDynamic()) {
-        return this.value;
-    }
+        return this.value; 
+    } 
     return this.offsetAsBytes();
 };
 
@@ -35417,7 +35417,7 @@ SolidityParam.prototype.encode = function () {
  * @returns {String}
  */
 SolidityParam.encodeList = function (params) {
-
+    
     // updating offsets
     var totalOffset = params.length * 32;
     var offsetParams = params.map(function (param) {
@@ -35543,13 +35543,13 @@ SolidityType.prototype.staticPartLength = function (name) {
 
 /**
  * Should be used to determine if type is dynamic array
- * eg:
+ * eg: 
  * "type[]" => true
  * "type[4]" => false
  *
  * @method isDynamicArray
  * @param {String} name
- * @return {Bool} true if the type is dynamic array
+ * @return {Bool} true if the type is dynamic array 
  */
 SolidityType.prototype.isDynamicArray = function (name) {
     var nestedTypes = this.nestedTypes(name);
@@ -35558,13 +35558,13 @@ SolidityType.prototype.isDynamicArray = function (name) {
 
 /**
  * Should be used to determine if type is static array
- * eg:
+ * eg: 
  * "type[]" => false
  * "type[4]" => true
  *
  * @method isStaticArray
  * @param {String} name
- * @return {Bool} true if the type is static array
+ * @return {Bool} true if the type is static array 
  */
 SolidityType.prototype.isStaticArray = function (name) {
     var nestedTypes = this.nestedTypes(name);
@@ -35573,7 +35573,7 @@ SolidityType.prototype.isStaticArray = function (name) {
 
 /**
  * Should return length of static array
- * eg.
+ * eg. 
  * "int[32]" => 32
  * "int256[14]" => 14
  * "int[2][3]" => 3
@@ -35648,7 +35648,7 @@ SolidityType.prototype.nestedTypes = function (name) {
  * Should be used to encode the value
  *
  * @method encode
- * @param {Object} value
+ * @param {Object} value 
  * @param {String} name
  * @return {String} encoded value
  */
@@ -35662,7 +35662,7 @@ SolidityType.prototype.encode = function (value, name) {
 
             var result = [];
             result.push(f.formatInputInt(length).encode());
-
+            
             value.forEach(function (v) {
                 result.push(self.encode(v, nestedName));
             });
@@ -35738,12 +35738,12 @@ SolidityType.prototype.decode = function (bytes, offset, name) {
             return result;
         })();
     } else if (this.isDynamicType(name)) {
-
+        
         return (function () {
             var dynamicOffset = parseInt('0x' + bytes.substr(offset * 2, 64));      // in bytes
             var length = parseInt('0x' + bytes.substr(dynamicOffset * 2, 64));      // in bytes
             var roundedLength = Math.floor((length + 31) / 32);                     // in int
-
+        
             return self._outputFormatter(new SolidityParam(bytes.substr(dynamicOffset * 2, ( 1 + roundedLength) * 64), 0));
         })();
     }
@@ -35866,13 +35866,13 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 /**
  * Utils
- *
+ * 
  * @module utils
  */
 
 /**
  * Utility functions
- *
+ * 
  * @class [utils] config
  * @constructor
  */
@@ -35939,7 +35939,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file sha3.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -36004,7 +36004,7 @@ var sha3 = require('./sha3.js');
 var utf8 = require('utf8');
 
 var unitMap = {
-    'noether':      '0',
+    'noether':      '0',    
     'wei':          '1',
     'kwei':         '1000',
     'Kwei':         '1000',
@@ -36387,18 +36387,18 @@ var isAddress = function (address) {
  * @param {String} address the given HEX adress
  * @return {Boolean}
 */
-var isChecksumAddress = function (address) {
+var isChecksumAddress = function (address) {    
     // Check each case
     address = address.replace('0x','');
     var addressHash = sha3(address.toLowerCase());
 
-    for (var i = 0; i < 40; i++ ) {
+    for (var i = 0; i < 40; i++ ) { 
         // the nth letter should be uppercase if the nth digit of casemap is 1
         if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
             return false;
         }
     }
-    return true;
+    return true;    
 };
 
 
@@ -36410,15 +36410,15 @@ var isChecksumAddress = function (address) {
  * @param {String} address the given HEX adress
  * @return {String}
 */
-var toChecksumAddress = function (address) {
+var toChecksumAddress = function (address) { 
     if (typeof address === 'undefined') return '';
 
     address = address.toLowerCase().replace('0x','');
     var addressHash = sha3(address);
     var checksumAddress = '0x';
 
-    for (var i = 0; i < address.length; i++ ) {
-        // If ith character is 9 to f then make it uppercase
+    for (var i = 0; i < address.length; i++ ) { 
+        // If ith character is 9 to f then make it uppercase 
         if (parseInt(addressHash[i], 16) > 7) {
           checksumAddress += address[i].toUpperCase();
         } else {
@@ -36731,7 +36731,7 @@ module.exports = Web3;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file allevents.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2014
@@ -36821,7 +36821,7 @@ module.exports = AllSolidityEvents;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file batch.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -36866,7 +36866,7 @@ Batch.prototype.execute = function () {
                 requests[index].callback(null, (requests[index].format ? requests[index].format(result.result) : result.result));
             }
         });
-    });
+    }); 
 };
 
 module.exports = Batch;
@@ -37189,7 +37189,7 @@ module.exports = ContractFactory;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file errors.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -37229,7 +37229,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file event.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2014
@@ -37300,7 +37300,7 @@ SolidityEvent.prototype.signature = function () {
 
 /**
  * Should be used to encode indexed params and options to one final object
- *
+ * 
  * @method encode
  * @param {Object} indexed
  * @param {Object} options
@@ -37331,7 +37331,7 @@ SolidityEvent.prototype.encode = function (indexed, options) {
         if (value === undefined || value === null) {
             return null;
         }
-
+        
         if (utils.isArray(value)) {
             return value.map(function (v) {
                 return '0x' + coder.encodeParam(i.type, v);
@@ -37353,17 +37353,17 @@ SolidityEvent.prototype.encode = function (indexed, options) {
  * @return {Object} result object with decoded indexed && not indexed params
  */
 SolidityEvent.prototype.decode = function (data) {
-
+ 
     data.data = data.data || '';
     data.topics = data.topics || [];
 
     var argTopics = this._anonymous ? data.topics : data.topics.slice(1);
     var indexedData = argTopics.map(function (topics) { return topics.slice(2); }).join("");
-    var indexedParams = coder.decodeParams(this.types(true), indexedData);
+    var indexedParams = coder.decodeParams(this.types(true), indexedData); 
 
     var notIndexedData = data.data.slice(2);
     var notIndexedParams = coder.decodeParams(this.types(false), notIndexedData);
-
+    
     var result = formatters.outputLogFormatter(data);
     result.event = this.displayName();
     result.address = data.address;
@@ -37398,7 +37398,7 @@ SolidityEvent.prototype.execute = function (indexed, options, callback) {
             indexed = {};
         }
     }
-
+    
     var o = this.encode(indexed, options);
     var formatter = this.decode.bind(this);
     return new Filter(this._requestManager, o, watches.eth(), formatter, callback);
@@ -37459,7 +37459,7 @@ var extend = function (web3) {
         }
     };
 
-    ex.formatters = formatters;
+    ex.formatters = formatters; 
     ex.utils = utils;
     ex.Method = Method;
     ex.Property = Property;
@@ -37721,7 +37721,7 @@ module.exports = Filter;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file formatters.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @author Fabian Vogelsteller <fabian@ethdev.com>
@@ -37788,7 +37788,7 @@ var inputCallFormatter = function (options){
         options[key] = utils.fromDecimal(options[key]);
     });
 
-    return options;
+    return options; 
 };
 
 /**
@@ -37813,12 +37813,12 @@ var inputTransactionFormatter = function (options){
         options[key] = utils.fromDecimal(options[key]);
     });
 
-    return options;
+    return options; 
 };
 
 /**
  * Formats the output of a transaction to its proper values
- *
+ * 
  * @method outputTransactionFormatter
  * @param {Object} tx
  * @returns {Object}
@@ -37837,7 +37837,7 @@ var outputTransactionFormatter = function (tx){
 
 /**
  * Formats the output of a transaction receipt to its proper values
- *
+ * 
  * @method outputTransactionReceiptFormatter
  * @param {Object} receipt
  * @returns {Object}
@@ -37863,7 +37863,7 @@ var outputTransactionReceiptFormatter = function (receipt){
  * Formats the output of a block to its proper values
  *
  * @method outputBlockFormatter
- * @param {Object} block
+ * @param {Object} block 
  * @returns {Object}
 */
 var outputBlockFormatter = function(block) {
@@ -37891,7 +37891,7 @@ var outputBlockFormatter = function(block) {
 
 /**
  * Formats the output of a log
- *
+ * 
  * @method outputLogFormatter
  * @param {Object} log object
  * @returns {Object} log
@@ -37932,7 +37932,7 @@ var inputPostFormatter = function(post) {
         return (topic.indexOf('0x') === 0) ? topic : utils.fromUtf8(topic);
     });
 
-    return post;
+    return post; 
 };
 
 /**
@@ -38119,8 +38119,8 @@ SolidityFunction.prototype.call = function () {
     if (!callback) {
         var output = this._eth.call(payload, defaultBlock);
         return this.unpackOutput(output);
-    }
-
+    } 
+        
     var self = this;
     this._eth.call(payload, defaultBlock, function (error, output) {
         callback(error, self.unpackOutput(output));
@@ -38205,11 +38205,11 @@ SolidityFunction.prototype.request = function () {
     var callback = this.extractCallback(args);
     var payload = this.toPayload(args);
     var format = this.unpackOutput.bind(this);
-
+    
     return {
         method: this._constant ? 'eth_call' : 'eth_sendTransaction',
         callback: callback,
-        params: [payload],
+        params: [payload], 
         format: format
     };
 };
@@ -38341,7 +38341,7 @@ HttpProvider.prototype.send = function (payload) {
     try {
         result = JSON.parse(result);
     } catch(e) {
-        throw errors.InvalidResponse(request.responseText);
+        throw errors.InvalidResponse(request.responseText);                
     }
 
     return result;
@@ -38355,7 +38355,7 @@ HttpProvider.prototype.send = function (payload) {
  * @param {Function} callback triggered on end with (err, result)
  */
 HttpProvider.prototype.sendAsync = function (payload, callback) {
-    var request = this.prepareRequest(true);
+    var request = this.prepareRequest(true); 
 
     request.onreadystatechange = function() {
         if (request.readyState === 4) {
@@ -38365,13 +38365,13 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
             try {
                 result = JSON.parse(result);
             } catch(e) {
-                error = errors.InvalidResponse(request.responseText);
+                error = errors.InvalidResponse(request.responseText);                
             }
 
             callback(error, result);
         }
     };
-
+    
     try {
         request.send(JSON.stringify(payload));
     } catch(error) {
@@ -38419,7 +38419,7 @@ module.exports = HttpProvider;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file iban.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -38619,7 +38619,7 @@ Iban.prototype.address = function () {
         var base36 = this._iban.substr(4);
         var asBn = new BigNumber(base36, 36);
         return padLeft(asBn.toString(16), 20);
-    }
+    } 
 
     return '';
 };
@@ -38664,7 +38664,7 @@ var IpcProvider = function (path, net) {
     var _this = this;
     this.responseCallbacks = {};
     this.path = path;
-
+    
     this.connection = net.connect({path: this.path});
 
     this.connection.on('error', function(e){
@@ -38674,7 +38674,7 @@ var IpcProvider = function (path, net) {
 
     this.connection.on('end', function(){
         _this._timeout();
-    });
+    }); 
 
 
     // LISTEN FOR CONNECTION RESPONSES
@@ -38713,7 +38713,7 @@ Will parse the response and make an array out of it.
 IpcProvider.prototype._parseResponse = function(data) {
     var _this = this,
         returnValues = [];
-
+    
     // DE-CHUNKER
     var dechunkedData = data
         .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
@@ -38817,7 +38817,7 @@ IpcProvider.prototype.send = function (payload) {
         try {
             result = JSON.parse(data);
         } catch(e) {
-            throw errors.InvalidResponse(data);
+            throw errors.InvalidResponse(data);                
         }
 
         return result;
@@ -38998,7 +38998,7 @@ Method.prototype.extractCallback = function (args) {
 
 /**
  * Should be called to check if the number of arguments is correct
- *
+ * 
  * @method validateArgs
  * @param {Array} arguments
  * @throws {Error} if it is not
@@ -39011,7 +39011,7 @@ Method.prototype.validateArgs = function (args) {
 
 /**
  * Should be called to format input args of method
- *
+ * 
  * @method formatInput
  * @param {Array}
  * @return {Array}
@@ -39065,7 +39065,7 @@ Method.prototype.attachToObject = function (obj) {
         obj[name[0]] = obj[name[0]] || {};
         obj[name[0]][name[1]] = func;
     } else {
-        obj[name[0]] = func;
+        obj[name[0]] = func; 
     }
 };
 
@@ -39129,8 +39129,8 @@ var DB = function (web3) {
     this._requestManager = web3._requestManager;
 
     var self = this;
-
-    methods().forEach(function(method) {
+    
+    methods().forEach(function(method) { 
         method.attachToObject(self);
         method.setRequestManager(web3._requestManager);
     });
@@ -39232,12 +39232,12 @@ function Eth(web3) {
 
     var self = this;
 
-    methods().forEach(function(method) {
+    methods().forEach(function(method) { 
         method.attachToObject(self);
         method.setRequestManager(self._requestManager);
     });
 
-    properties().forEach(function(p) {
+    properties().forEach(function(p) { 
         p.attachToObject(self);
         p.setRequestManager(self._requestManager);
     });
@@ -39544,7 +39544,7 @@ var Net = function (web3) {
 
     var self = this;
 
-    properties().forEach(function(p) {
+    properties().forEach(function(p) { 
         p.attachToObject(self);
         p.setRequestManager(web3._requestManager);
     });
@@ -39687,7 +39687,7 @@ var Shh = function (web3) {
 
     var self = this;
 
-    methods().forEach(function(method) {
+    methods().forEach(function(method) { 
         method.attachToObject(self);
         method.setRequestManager(self._requestManager);
     });
@@ -39697,11 +39697,11 @@ Shh.prototype.filter = function (fil, callback) {
     return new Filter(this._requestManager, fil, watches.shh(), formatters.outputPostFormatter, callback);
 };
 
-var methods = function () {
+var methods = function () { 
 
     var post = new Method({
-        name: 'post',
-        call: 'shh_post',
+        name: 'post', 
+        call: 'shh_post', 
         params: 1,
         inputFormatter: [formatters.inputPostFormatter]
     });
@@ -39875,7 +39875,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file namereg.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -39940,7 +39940,7 @@ Property.prototype.setRequestManager = function (rm) {
 
 /**
  * Should be called to format input args of method
- *
+ * 
  * @method formatInput
  * @param {Array}
  * @return {Array}
@@ -39976,7 +39976,7 @@ Property.prototype.extractCallback = function (args) {
 
 /**
  * Should attach function to method
- *
+ * 
  * @method attachToObject
  * @param {Object}
  * @param {Function}
@@ -39984,7 +39984,7 @@ Property.prototype.extractCallback = function (args) {
 Property.prototype.attachToObject = function (obj) {
     var proto = {
         get: this.buildGet(),
-        enumerable: true
+        enumerable: true 
     };
 
     var names = this.name.split('.');
@@ -40008,7 +40008,7 @@ Property.prototype.buildGet = function () {
     return function get() {
         return property.formatOutput(property.requestManager.send({
             method: property.getter
-        }));
+        })); 
     };
 };
 
@@ -40062,7 +40062,7 @@ module.exports = Property;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file requestmanager.js
  * @author Jeffrey Wilcke <jeff@ethdev.com>
  * @author Marek Kotewicz <marek@ethdev.com>
@@ -40129,7 +40129,7 @@ RequestManager.prototype.sendAsync = function (data, callback) {
         if (err) {
             return callback(err);
         }
-
+        
         if (!Jsonrpc.getInstance().isValidResponse(result)) {
             return callback(errors.InvalidResponse(result));
         }
@@ -40162,7 +40162,7 @@ RequestManager.prototype.sendBatch = function (data, callback) {
         }
 
         callback(err, results);
-    });
+    }); 
 };
 
 /**
@@ -40266,7 +40266,7 @@ RequestManager.prototype.poll = function () {
     }
 
     var payload = Jsonrpc.getInstance().toBatchPayload(pollsData);
-
+    
     // map the request id to they poll id
     var pollsIdMap = {};
     payload.forEach(function(load, index){
@@ -40296,7 +40296,7 @@ RequestManager.prototype.poll = function () {
             } else
                 return false;
         }).filter(function (result) {
-            return !!result;
+            return !!result; 
         }).filter(function (result) {
             var valid = Jsonrpc.getInstance().isValidResponse(result);
             if (!valid) {
@@ -40371,16 +40371,16 @@ var pollSyncing = function(self) {
 
         self.callbacks.forEach(function (callback) {
             if (self.lastSyncState !== sync) {
-
+                
                 // call the callback with true first so the app can stop anything, before receiving the sync data
                 if(!self.lastSyncState && utils.isObject(sync))
                     callback(null, true);
-
+                
                 // call on the next CPU cycle, so the actions of the sync stop can be processes first
                 setTimeout(function() {
                     callback(null, sync);
                 }, 0);
-
+                
                 self.lastSyncState = sync;
             }
         });
@@ -40435,7 +40435,7 @@ module.exports = IsSyncing;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file transfer.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -40454,7 +40454,7 @@ var exchangeAbi = require('../contracts/SmartExchange.json');
  * @param {Function} callback, callback
  */
 var transfer = function (eth, from, to, value, callback) {
-    var iban = new Iban(to);
+    var iban = new Iban(to); 
     if (!iban.isValid()) {
         throw new Error('invalid iban address');
     }
@@ -40462,7 +40462,7 @@ var transfer = function (eth, from, to, value, callback) {
     if (iban.isDirect()) {
         return transferToAddress(eth, from, iban.address(), value, callback);
     }
-
+    
     if (!callback) {
         var address = eth.icapNamereg().addr(iban.institution());
         return deposit(eth, from, address, value, iban.client());
@@ -40471,7 +40471,7 @@ var transfer = function (eth, from, to, value, callback) {
     eth.icapNamereg().addr(iban.institution(), function (err, address) {
         return deposit(eth, from, address, value, iban.client(), callback);
     });
-
+    
 };
 
 /**
@@ -43200,47 +43200,47 @@ module.exports = transfer;
 },{"crypto":56}]},{},[2])(2)
 });
 
-//// TRUFFLE BOOTSTRAP
+//// TRUFFLE BOOTSTRAP                                          
 
-Object.keys(__contracts__).forEach(function(contract_name) {
+Object.keys(__contracts__).forEach(function(contract_name) {    
 
-  window[contract_name] = __contracts__[contract_name];
+  window[contract_name] = __contracts__[contract_name];         
 
-});
+});                                                             
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function() {                    
 
+                                                                
 
+  // Supports Mist, and other wallets that provide 'web3'.      
 
-  // Supports Mist, and other wallets that provide 'web3'.
+  if (typeof web3 !== 'undefined') {                            
 
-  if (typeof web3 !== 'undefined') {
+    // Use the Mist/wallet provider.                            
 
-    // Use the Mist/wallet provider.
+    window.web3 = new Web3(web3.currentProvider);               
 
-    window.web3 = new Web3(web3.currentProvider);
+  } else {                                                      
 
-  } else {
+    // Use the provider from the config.                        
 
-    // Use the provider from the config.
+    window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545')); 
 
-    window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+  }                                                             
 
-  }
+                                                                
 
+  [Splitter].forEach(function(contract) {         
 
+    contract.setProvider(window.web3.currentProvider);          
 
-  [Splitter].forEach(function(contract) {
+  });                                                           
 
-    contract.setProvider(window.web3.currentProvider);
+});                                                              
 
-  });
+//// END TRUFFLE BOOTSTRAP                                      
 
-});
-
-//// END TRUFFLE BOOTSTRAP
-
-
+ 
 
 // 2017.02.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
 // 2017.02.22 Started on event handling, removed global address constants, added AllA instead
