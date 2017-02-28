@@ -94,6 +94,7 @@ contract('Constructor Addresses Test', function() {
 })
 
 // Check split() for sending by Alice which should result in 50/50 -> Bob and Carol
+// Note: This has NOT been updated for the 0.0.4 change to the pull pattern, so should always fail.
 // First get Bob and Carol's starting balances
 {
 var BobBalAnteBN, CarolBalAnteBN,
