@@ -5713,6 +5713,19 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "function"
       },
       {
+        "constant": false,
+        "inputs": [],
+        "name": "withdraw",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
         "constant": true,
         "inputs": [],
         "name": "getAliceAddress",
@@ -5886,9 +5899,26 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         ],
         "name": "OnSplit",
         "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "SenderA",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "WeiWithdrawnU",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnWithdrawal",
+        "type": "event"
       }
     ],
-    "unlinked_binary": "0x60606040526040516060806106338339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316158061005f5750600160a060020a038216155b806100715750600160a060020a038116155b1561007b57610000565b82600160a060020a031682600160a060020a031614806100ac575082600160a060020a031681600160a060020a0316145b806100c8575081600160a060020a031681600160a060020a0316145b156100d257610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6104b78061017c6000396000f300606060405236156100725763ffffffff60e060020a6000350416630c4f65bd81146100c85780630d8e6e2c146100f15780631865c57d1461017e5780633f868b0f146101ac578063b603cd80146101d5578063bf778f52146101f6578063e304b0b41461021f578063f765417614610248575b6100c65b60003411156100c35760408051600160a060020a033316815234602082015281517f39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da929181900390910190a15b5b565b005b34610000576100d5610252565b60408051600160a060020a039092168252519081900360200190f35b34610000576100fe610267565b604080516020808252835181830152835191928392908301918501908083838215610144575b80518252602083111561014457601f199092019160209182019101610124565b505050905090810190601f1680156101705780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b346100005761018b6102ac565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576100d56102b6565b60408051600160a060020a039092168252519081900360200190f35b34610000576101e26102c6565b604080519115158252519081900360200190f35b34610000576100d561031c565b60408051600160a060020a039092168252519081900360200190f35b34610000576100d561032c565b60408051600160a060020a039092168252519081900360200190f35b6100c661033c565b005b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e33000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600154600160a060020a03165b90565b60008060005460ff166001811161000057146102e157610000565b60005433600160a060020a0390811661010090920416141561031357506000805460ff19166001908117909155610264565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b6000808060005460ff1660018111610000571461035857610000565b34151561036457610000565b60015433600160a060020a039081169116141561044157505060028054604051349283049283900391600160a060020a0316906108fc8415029084906000818181858888f1935050505015156103b957610000565b600354604051600160a060020a039091169082156108fc029083906000818181858888f1935050505015156103ed57610000565b60408051600160a060020a03331681523460208201528082018490526060810183905290517f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c749181900360800190a1610485565b60408051600160a060020a033316815234602082015281517f85386e76988169e9b5a44648ef1df11680573918c0faa069383c03cfdce4d993929181900390910190a15b5b5b50505600a165627a7a72305820b5a9f80c47a49755b23f0fe6441d8188850aa943ce48b6c68cd9bb76fd6cceb00029",
+    "unlinked_binary": "0x60606040526040516060806107358339810160409081528151602083015191909201515b60008054600160a060020a033381166101000261010060a860020a0319909216919091179091558316158061005f5750600160a060020a038216155b806100715750600160a060020a038116155b1561007b57610000565b82600160a060020a031682600160a060020a031614806100ac575082600160a060020a031681600160a060020a0316145b806100c8575081600160a060020a031681600160a060020a0316145b156100d257610000565b60018054600160a060020a03858116600160a060020a03199283168117909355600280548683169084168117909155600380548684169416841790556000805460ff1916905560408051339093168352346020840152828101949094526060820152608081019190915290517f6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c99181900360a00190a15b5050505b6105b98061017c6000396000f3006060604052361561007d5763ffffffff60e060020a6000350416630c4f65bd81146100d35780630d8e6e2c146100fc5780631865c57d146101895780633ccfd60b146101b75780633f868b0f146101d8578063b603cd8014610201578063bf778f5214610222578063e304b0b41461024b578063f765417614610274575b6100d15b60003411156100ce5760408051600160a060020a033316815234602082015281517f39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da929181900390910190a15b5b565b005b34610000576100e061027e565b60408051600160a060020a039092168252519081900360200190f35b3461000057610109610293565b60408051602080825283518183015283519192839290830191850190808383821561014f575b80518252602083111561014f57601f19909201916020918201910161012f565b505050905090810190601f16801561017b5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34610000576101966102d8565b6040518082600181116100005760ff16815260200191505060405180910390f35b34610000576101c46102e2565b604080519115158252519081900360200190f35b34610000576100e0610405565b60408051600160a060020a039092168252519081900360200190f35b34610000576101c4610415565b604080519115158252519081900360200190f35b34610000576100e061046b565b60408051600160a060020a039092168252519081900360200190f35b34610000576100e061047b565b60408051600160a060020a039092168252519081900360200190f35b6100d161048b565b005b6000546101009004600160a060020a03165b90565b604080516020818101835260009091528151808301909252600582527f302e302e34000000000000000000000000000000000000000000000000000000908201525b90565b60005460ff165b90565b600254600090819033600160a060020a0390811691161415610307575060045461032c565b60035433600160a060020a0390811691161415610327575060055461032c565b610000565b5b60008111156103fb5760025433600160a060020a039081169116141561035757600060045561035d565b60006005555b604051600160a060020a0333169082156108fc029083906000818181858888f19350505050156103d45760408051600160a060020a03331681526020810183905281517fefbfe3c015941f3419cd0c7f713fd74c6874d0da2d765adc7f700370ccd5ba5c929181900390910190a160019150610401565b60025433600160a060020a03908116911614156103f55760048190556103fb565b60058190555b5b600091505b5090565b600154600160a060020a03165b90565b60008060005460ff1660018111610000571461043057610000565b60005433600160a060020a0390811661010090920416141561032757506000805460ff19166001908117909155610290565b610000565b5b90565b600354600160a060020a03165b90565b600254600160a060020a03165b90565b6000808060005460ff166001811161000057146104a757610000565b3415156104b357610000565b60015433600160a060020a03908116911614156105435760023460048054929091049182019055600580543483810391820190925560408051600160a060020a03331681526020810193909352828101849052606083018290525192945092507f78264fdc4c93822669767e557e090c87557f5951725e0fac5909d6923fd45c74919081900360800190a1610587565b60408051600160a060020a033316815234602082015281517f85386e76988169e9b5a44648ef1df11680573918c0faa069383c03cfdce4d993929181900390910190a15b5b5b50505600a165627a7a723058206f9a650c7b8ecb4b9575f1614dbcc68cae9a1bd03bdaee76ec08d61ff60a78810029",
     "events": {
       "0x6e91f529020393cb27e7642066141748274cbbcfa6d4632cf46076debb9089c9": {
         "anonymous": false,
@@ -5999,11 +6029,28 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         ],
         "name": "OnSplitReceipt",
         "type": "event"
+      },
+      "0xefbfe3c015941f3419cd0c7f713fd74c6874d0da2d765adc7f700370ccd5ba5c": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "SenderA",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "WeiWithdrawnU",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnWithdrawal",
+        "type": "event"
       }
     },
-    "updated_at": 1487965145329,
+    "updated_at": 1488290583613,
     "links": {},
-    "address": "0xece5670f84da6b798fb861676cbd02ca7dd3ff09"
+    "address": "0x18c22b4be82d7bf5f478ecb3eca72be4deb892a2"
   }
 };
 
@@ -43198,15 +43245,28 @@ window.addEventListener('load', function() {
 // 2017.02.21 Extensively revised following Xavier's comments about use of the global WhoA and WhoS plus the previous switch construction for setting who info
 // 2017.02.22 Started on event handling, removed global address constants, added AllA instead
 // 2017.02.24 Added use of getTransactionReceiptMined(); tidied up promises use in onload; fixed ending watch for constructor event
+// 2017.02.27 Changed from push to pull pattern
 
-var SdepFn; // Splitter.deployed()
-var AllA; // array of {whoS, whoA} objects
-var Errors;
+var Instance, // Splitter.deployed()
+    AllA, // array of {whoS, whoA} objects
+    Errors;
 
 // Utility fns
 function SetStatus(msgS) {
   document.getElementById("Status").innerHTML = msgS;
 };
+
+function LogAndSetStatus(msgS) {
+  console.log(msgS);
+  SetStatus(msgS);
+};
+
+function SetStatusOnError(msgS, e) {
+  msgS += " Error";
+  console.log(msgS);
+  console.error(""+e);
+  SetStatus(msgS + " - see log");
+}
 
 function SetAddress(addrA, whoS) {
   document.getElementById(whoS+"Addr").innerHTML = addrA;
@@ -43225,6 +43285,29 @@ function GetWhoObj(whoI) {
   return whoO;
 }
 
+function SetBalance(whoI) {
+  var whoO = GetWhoObj(whoI);
+  if (!whoO.whoA) return; // Expected to happen only for Any with no address entered
+  web3.eth.getBalance(whoO.whoA, function(e, result) {
+    if (e) {
+      Errors++;
+      SetStatusOnError("Getting balance for " + whoO.whoS, e)
+    }else
+      document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(result, "ether");
+  });
+}
+
+function RefreshBalances() {
+  SetStatus("Refreshing balances...");
+  Errors = 0;
+  for (var iX=0; iX<=5; iX++) {
+    SetBalance(iX);
+    if (Errors) break;
+  }
+  if (!Errors)
+    SetStatus("Balances refreshed");
+};
+
 function AddressToWho(aA) {
   for (var iX=0; iX<=5; iX++) {
     if (AllA[iX].whoA == aA)
@@ -43234,30 +43317,6 @@ function AddressToWho(aA) {
   return aA;
 }
 
-function SetBalance(whoI) {
-  var whoO = GetWhoObj(whoI);
-  if (!whoO.whoA) return; // Expected to happen only for Any with no address entered
-  web3.eth.getBalance(whoO.whoA, function(error, result) {
-    if (!error)
-      document.getElementById(whoO.whoS + "Ethers").innerHTML = web3.fromWei(result, "ether");
-    else {
-      Errors++;
-      var msgS = "Error getting balance for " + whoO.whoS;
-      console.error(msgS+": "+error);
-      SetStatus(msgS+" - see log.");
-    }
-  });
-}
-
-function RefreshBalances() {
-  SetStatus("Refreshing balances...");
-  Errors = 0;
-  for (var iX=0; iX<=5; iX++)
-    SetBalance(iX);
-  if (!Errors)
-    SetStatus("Balances refreshed");
-};
-
 // Button click fns
 function Refresh() {
   RefreshBalances();
@@ -43265,7 +43324,8 @@ function Refresh() {
 
 function Send(fromNumS) {
   var amtD;
-  var whoO = GetWhoObj(Number(fromNumS));
+  var whoI = Number(fromNumS);
+  var whoO = GetWhoObj(whoI);
   if (!whoO.whoA) return; // null in the Any case with no address
   // Xavier: You can stay with strings since Web3 will convert strings to big numbers anyway.
   // But left as it was for the bit of basic input validation performed
@@ -43275,35 +43335,78 @@ function Send(fromNumS) {
     return;
   }
   var msgS = "Sending " + amtD + " ethers to Splitter.split() from " + whoO.whoS;
-  SetStatus(msgS + " ... (Hold on while this transaction is added to the blockchain if it is valid.)");
-  console.log(msgS);
-//SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 }).then(function(result) {
-  SdepFn.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")})
-  .then(function(txHash) {
-    console.log("Result: " + txHash);
-    return web3.eth.getTransactionReceiptMined(txHash);
-  }, function(e) {
-    console.error(""+e);
-    SetStatus("Error " + msgS + " - see log.");
-  })
-  .then(function() {
-    // The split() trans has been mined. Now update balances
-    RefreshBalances();
-    SetStatus("Transaction complete!");
-  })
+  LogAndSetStatus(msgS);
+//return Instance.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 })
+  return Instance.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")})
+    .then(function(txHash) {
+      console.log("Split Tx: " + txHash);
+      return web3.eth.getTransactionReceiptMined(txHash);
+    }, e => SetStatusOnError(msgS, e))
+    .then(function() {
+      // The split() trans has been mined
+      console.log("Send to split() completed");
+      if (whoI == 2) {
+        // The send was from Alice, so a split to Bob and Carol would have been performed. Do the withdrawal for Bob, but not Carol, leaving Carol to hit her Withdraw button to get hers
+        console.log("A split from Alice has been performed. Now withdraw Bob's share");
+        msgS = "Withdrawing for Bob";
+        return Instance.withdraw({from: AllA[3].whoA}) // Bob
+          .then(txHash => {
+            console.log("Bob withdrawal Tx: " + txHash);
+            return web3.eth.getTransactionReceiptMined(txHash);
+          }, e => SetStatusOnError(msgS, e))
+          .then(function() {
+            // The withdraw() trans has been mined. Now update all balances
+            console.log("Withdrawal for Bob completed");
+            RefreshBalances();
+            SetStatus("Transaction complete!");
+          })
+      }else{
+        // The send was from other than Alice so no split would have happened. Just refresh
+        RefreshBalances();
+        SetStatus("Transaction complete!");
+      }
+    })
+}
+
+// Fn for Carol to withdraw any pending withdrawal amounts for her
+function CarolPull() {
+  var msgS = "Doing a withdrawal check for Carol";
+  LogAndSetStatus(msgS);
+  carolA = AllA[4].whoA;
+  // See if there is anything to withdraw
+  return Instance.withdraw.call({from: carolA}) // .call() to get bool return and no transaction
+    .then(availB => {
+      if (!availB) {
+        LogAndSetStatus("Nothing is available for withdrawal");
+        return;
+      }
+      // A withdrawal is available
+      console.log("There is a withdrawal available");
+      msgS = "Withdrawing for Carol";
+      return Instance.withdraw({from: carolA}) // do it i.e. not .call()
+        .then(txHash => {
+          console.log("Carol withdrawal Tx: " + txHash);
+          return web3.eth.getTransactionReceiptMined(txHash);
+        }, e => SetStatusOnError(msgS, e))
+        .then(function() {
+          // The withdraw() trans has been mined. Now update Carol's balance
+          SetBalance(4);
+          LogAndSetStatus("Withdrawal for Carol completed");
+        })
+    }, e => SetStatusOnError(msgS, e));
 }
 
 // Event fns
 window.onload = function() {
-  // Xavier's helper function to promisify waiting for a transaction to be minded from the course notes or
-  web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
+  // Add Xavier's helper function to wait for a transaction to be mined, to web3.eth
+  web3.eth.getTransactionReceiptMined = function(txnHash, interval) {
     var transactionReceiptAsync;
     interval = interval ? interval : 500;
     transactionReceiptAsync = function(txnHash, resolve, reject) {
       try {
         var receipt = web3.eth.getTransactionReceipt(txnHash);
         if (receipt == null) {
-          setTimeout(function () {
+          setTimeout(function() {
             transactionReceiptAsync(txnHash, resolve, reject);
           }, interval);
         }else{
@@ -43316,18 +43419,18 @@ window.onload = function() {
 
     if (Array.isArray(txnHash)) {
       var promises = [];
-      txnHash.forEach(function (oneTxHash) {
+      txnHash.forEach(function(oneTxHash) {
         promises.push(web3.eth.getTransactionReceiptMined(oneTxHash, interval));
       });
       return Promise.all(promises);
     } else {
-      return new Promise(function (resolve, reject) {
+      return new Promise(function(resolve, reject) {
         transactionReceiptAsync(txnHash, resolve, reject);
       });
     }
   };
   var contractA, ownerA, aliceA, bobA, carolA; // Addresses
-  SdepFn = Splitter.deployed();
+  Instance = Splitter.deployed();
   // Addresses
   // This method of getting the contract address works but it gives a warning:
   // Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check
@@ -43335,36 +43438,24 @@ window.onload = function() {
   contractA = Splitter.address;
   SetAddress(contractA, "Contract");
 
-  SdepFn.getVersion.call()
-  .then(function(result) {
+  Instance.getVersion.call()
+  .then(result => {
     document.getElementById("Version").innerHTML = result;
-    return SdepFn.getOwnerAddress.call();
-  }, function(e) {
-    console.error(""+e);
-    SetStatus("Error getting Splitter version");
-  })
+    return Instance.getOwnerAddress.call();
+  }, e => SetStatusOnError("Getting Splitter version", e))
   .then(function(result) {
     SetAddress(ownerA = result, "Owner");
-    return SdepFn.getAliceAddress.call();
-  }, function(e) {
-    console.error(""+e);
-    SetStatus("Error getting Owner address");
-  })
-  .then(function(result) {
+    return Instance.getAliceAddress.call();
+  }, e => SetStatusOnError("Getting Owner address", e))
+  .then(result => {
     SetAddress(aliceA = result, "Alice");
-    return SdepFn.getBobAddress.call();
-  }, function(e) {
-    console.error(""+e);
-    SetStatus("Error getting Alice address");
-  })
-  .then(function(result) {
+    return Instance.getBobAddress.call();
+  }, e => SetStatusOnError("Getting Alice address", e))
+  .then(result => {
     SetAddress(bobA = result, "Bob");
-    return SdepFn.getCarolAddress.call();
-  }, function(e) {
-    console.error(""+e);
-    SetStatus("Error getting Bob address");
-  })
-  .then(function(result) {
+    return Instance.getCarolAddress.call();
+  }, e => SetStatusOnError("Getting Bob address", e))
+  .then(result => {
     SetAddress(carolA = result, "Carol");
     // All addresses loaded
     AllA = [
@@ -43376,14 +43467,12 @@ window.onload = function() {
       { whoS: "Any",   whoA: null   }        // 5
     ];
     RefreshBalances();
-    LogContractCreationEvents();
-    LogSplitEvents();
-    LogSplitReceiptEvents();
-    LogFallbackReceiptEvents();
-  }, function(e) {
-    console.error(""+e);
-    SetStatus("Error getting Carol address");
-  });
+    LogContractCreation();
+    LogSplits();
+    LogSplitReceipts();
+    LogFallbackReceipts();
+    LogWithdrawals();
+  }, e => SetStatusOnError("Getting Carol address", e));
 } // end onload
 
 /* Event handlers
@@ -43391,13 +43480,14 @@ window.onload = function() {
   event OnFallbackReceipt(address SenderA, uint WeiSentU); // Received from sender via fallback fn if non-zero
   event OnSplitReceipt(   address SenderA, uint WeiSentU); // Received from sender via a non-zero transaction to split()
   event OnSplit(address SenderA, uint WeiSentU, uint WeiToBobU, uint WeiToCarolU); // Split on send from Alice, half to Bob, other half to Carol
+  event OnWithdrawal(address SenderA, uint WeiWithdrawnU); // Withdrawal by sender
 */
 
-function LogContractCreationEvents() {
-  var onCreation = Splitter.deployed().OnCreation();
-  onCreation.watch(function (error, value) {
-    if (error)
-      console.error(error);
+function LogContractCreation() {
+  var onCreation = Instance.OnCreation();
+  onCreation.watch(function(e, value) {
+    if (e)
+      console.error(e);
     else{
       console.log("Constructor: Owner " + value.args.OwnerA + " plus addresses " + value.args.AliceA +
                   ", " + value.args.BobA + ", " + value.args.CarolA + " with " + web3.fromWei(value.args.EthersU, "ether") + " ethers sent");
@@ -43408,35 +43498,44 @@ function LogContractCreationEvents() {
   });
 }
 
-function LogFallbackReceiptEvents() {
-  Splitter.deployed().OnFallbackReceipt()
-    .watch(function (error, value) {
-      if (error)
-        console.error(error);
+function LogFallbackReceipts() {
+  Instance.OnFallbackReceipt()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
       else
         console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent to contract from " + AddressToWho(value.args.SenderA) + " via fallback");
     });
 }
 
-function LogSplitReceiptEvents() {
-  Splitter.deployed().OnSplitReceipt()
-    .watch(function (error, value) {
-      if (error)
-        console.error(error);
+function LogSplitReceipts() {
+  Instance.OnSplitReceipt()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
       else
-        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent to contract from " + AddressToWho(value.args.SenderA) + " via Split()");
+        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent to contract from " + AddressToWho(value.args.SenderA) + " via split()");
     });
 }
 
-function LogSplitEvents() {
-  Splitter.deployed().OnSplit()
-    .watch(function (error, value) {
-      if (error)
-        console.error(error);
+function LogSplits() {
+  Instance.OnSplit()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
       else
-        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent from " + AddressToWho(value.args.SenderA) + " to Split() split as " +
+        console.log(web3.fromWei(value.args.WeiSentU, "ether") + " ethers sent from " + AddressToWho(value.args.SenderA) + " to split() split as " +
                     web3.fromWei(value.args.WeiToBobU, "ether") + " ethers to Bob and " +
                     web3.fromWei(value.args.WeiToCarolU, "ether") + " ethers to Carol");
     });
 }
 
+function LogWithdrawals() {
+  Instance.OnWithdrawal()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
+      else
+        console.log(web3.fromWei(value.args.WeiWithdrawnU, "ether") + " ethers withdrawn by " + AddressToWho(value.args.SenderA));
+    });
+}

@@ -2,7 +2,7 @@
 //            removed and getBalancePromise() as below used instead. The above worked within a chain with a contract() it() constructions but not as the first one,
 //            whereas getBalancePromise() works in all cases.
 
-// Get the Promise of a Web3 getBalance() call based on Xavier's Get the Promise of Web3 accounts at https://gist.github.com/xavierlepretre/ed82f210df0f9300493d5ca79893806a
+// Get the Promise of a Web3 getBalance() call based on Xavier's "Get the Promise of Web3 accounts" at https://gist.github.com/xavierlepretre/ed82f210df0f9300493d5ca79893806a
 web3.eth.getBalancePromise = function(address) {
   return new Promise(function (resolve, reject) {
     web3.eth.getBalance(address, function(e, result) {

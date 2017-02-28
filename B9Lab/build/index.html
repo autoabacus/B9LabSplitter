@@ -46,6 +46,7 @@
       <td id=CarolEthers></td>
       <td><input type=text id=CarolAmt placeholder="e.g. 10 or 5.5"></input></td>
       <td><button id=CarolBtn onclick="Send(4)">Send</button></td>
+      <td><button id=CarolPullBtn onclick="CarolPull()">Withdraw</button></td>
     </tr>
     <tr>
       <td>Anyone</td>
@@ -60,8 +61,9 @@
   <br><p><b>Status</b>: <em><span id=Status>Loading</span></em></p>
   <h3>Notes:</h3>
   <ol>
-    <li>Amounts sent by Alice will be split 50/50 between Bob and Carol.</li>
+    <li>Amounts sent by Alice will be split 50/50 between Bob and Carol, as amounts waiting to be withdrawn, using the pull rather than push pattern.<br>Just for the experience and the fun of it, amounts split to Bob's are withdrawn immediately.<br>Carol must click "Withdraw" to get hers.</li>
     <li>Any other sends will be allocated to the Splitter contract.</li>
+    <li>Extra fields could be added to show pending withdrawals for Bob and Carol but I have not added that facility.</li>
     <li>Decimal fractions of Ethers to be sent can be entered.</li>
     <li>The buttons are not disabled/enabled re input validity or activity in progress as they should be for a real system.</li>
     <li>Checking inputs for validity could be much improved.</li>

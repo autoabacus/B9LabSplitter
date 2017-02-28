@@ -7,6 +7,7 @@ pragma solidity ^0.4.8;
 2017.02.21 0.0.2 After Xavier's comments
 2017.02.22 0.0.3 Code tidied up after various gas cost tests (details in own style guide), and wip comments removed
                  Events for receipts to contract via fallback fn and split() made distinct
+2017.02.27 0.0.4 Changed from push to pull pattern
 
 ToDo
 ====
@@ -14,13 +15,16 @@ ToDo
 
 */
 contract Splitter {
-  string  constant cVERSION = "0.0.3";
-  enum    N_State { Active, Inactive }
+  string  constant cVERSION = "0.0.4";
+  enum    N_State { Active, Inactive } // Since we have only 2 states, a bool could have been used instead
   N_State private psStateN; // State of the contract
   address private psOwnerA; // Contract owner. Could be Alice, Bob, or Carol but is not required to be. Remember that the Contract address and balance are different from the owner's address and balance
   address private psAliceA; // Alice
   address private psBobA;   // Bob
   address private psCarolA; // Carol
+//mapping (address => uint) private psPendingWithdrawalsMU; No. Since only Bob and Carol are involved here using a mapping or even an array of size 2 would be a waste.
+  uint    private pSBobPendingWithdrawalU;
+  uint    private pSCarolPendingWithdrawalU;
 
   // constructor
   function Splitter(address vAliceA, address vBobA, address vCarolA) payable {
@@ -47,6 +51,7 @@ contract Splitter {
   event OnFallbackReceipt(address SenderA, uint WeiSentU); // Received from sender via fallback fn if non-zero
   event OnSplitReceipt(   address SenderA, uint WeiSentU); // Received from sender via a non-zero transaction to split()
   event OnSplit(address SenderA, uint WeiSentU, uint WeiToBobU, uint WeiToCarolU); // Split on send from Alice, half to Bob, other half to Carol
+  event OnWithdrawal(address SenderA, uint WeiWithdrawnU);
 
   // no external functions
 
@@ -92,8 +97,8 @@ contract Splitter {
       // Ethers were sent by Alice so split to Bob and Carol
       uint kHalf1U = msg.value/2;
       uint kHalf2U = msg.value - kHalf1U; // Not also msg.value/2 in case of odd numbered wei
-      if (!psBobA.send(kHalf1U)) throw;   // send half to Bob but throw if the send() fails
-      if (!psCarolA.send(kHalf2U)) throw; // send the other half to Carol but throw if the send() fails. What about the half already sent to Bob??
+      pSBobPendingWithdrawalU   += kHalf1U; // half to Bob
+      pSCarolPendingWithdrawalU += kHalf2U; // the other half to Carol
       OnSplit(msg.sender, msg.value, kHalf1U, kHalf2U);
     }else
       // Ethers were sent to split() by other than Alice
@@ -101,6 +106,37 @@ contract Splitter {
       // a. throw
       // b. let them go to the contract, which they will have done anyway, so just need to log this.
       OnSplitReceipt(msg.sender, msg.value);
+  }
+
+  // Function to
+  function withdraw() returns (bool) {
+    uint weiToWithdrawU;
+    if (msg.sender == psBobA)
+      weiToWithdrawU = pSBobPendingWithdrawalU;
+    else if (msg.sender == psCarolA)
+      weiToWithdrawU = pSCarolPendingWithdrawalU;
+    else
+      throw; // punish anyone other than Bob or Carol who dares to call this function
+    if (weiToWithdrawU > 0) {
+      // There is a balance available for withdrawal
+      // Zero the pending refund before sending to prevent re-entrancy attacks
+      // (msg.sender == psBobA ? pSBobPendingWithdrawalU : pSCarolPendingWithdrawalU) = 0; // Couldn't use this yet. Got "Error: Conditional expression as left value is not supported yet"
+      if (msg.sender == psBobA)
+        pSBobPendingWithdrawalU = 0;
+      else
+        pSCarolPendingWithdrawalU = 0;
+
+      if (msg.sender.send(weiToWithdrawU)) {
+        OnWithdrawal(msg.sender, weiToWithdrawU);
+        return true;
+      }
+      // the send failed
+      if (msg.sender == psBobA)
+        pSBobPendingWithdrawalU = weiToWithdrawU;
+      else
+        pSCarolPendingWithdrawalU = weiToWithdrawU;
+    }
+    return false; // either there were no wei to withdraw or the send failed
   }
 
   // killMe() function re Stretch goals: add a kill switch to the whole contract
