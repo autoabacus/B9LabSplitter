@@ -2,12 +2,47 @@
 // 2017.02.22 Started on event handling, removed global address constants, added AllA instead
 // 2017.02.24 Added use of getTransactionReceiptMined(); tidied up promises use in onload; fixed ending watch for constructor event
 // 2017.02.27 Changed from push to pull pattern
+// 2017.03.02 Corrected promise error handling
 
 var Instance, // Splitter.deployed()
     AllA, // array of {whoS, whoA} objects
     Errors;
 
 // Utility fns
+// Add Xavier's helper function to wait for a transaction to be mined, to web3.eth
+function AddGetTransactionReceiptMinedToWeb3() {
+  web3.eth.getTransactionReceiptMined = function(txnHash, interval) {
+    var transactionReceiptAsync;
+    interval = interval ? interval : 500;
+    transactionReceiptAsync = function(txnHash, resolve, reject) {
+      try {
+        var receipt = web3.eth.getTransactionReceipt(txnHash);
+        if (receipt == null) {
+          setTimeout(function() {
+            transactionReceiptAsync(txnHash, resolve, reject);
+          }, interval);
+        }else{
+          resolve(receipt);
+        }
+      } catch(e) {
+        reject(e);
+      }
+    };
+
+    if (Array.isArray(txnHash)) {
+      var promises = [];
+      txnHash.forEach(function(oneTxHash) {
+        promises.push(web3.eth.getTransactionReceiptMined(oneTxHash, interval));
+      });
+      return Promise.all(promises);
+    } else {
+      return new Promise(function(resolve, reject) {
+        transactionReceiptAsync(txnHash, resolve, reject);
+      })
+    }
+  }
+}
+
 function SetStatus(msgS) {
   document.getElementById("Status").innerHTML = msgS;
 };
@@ -92,36 +127,36 @@ function Send(fromNumS) {
   }
   var msgS = "Sending " + amtD + " ethers to Splitter.split() from " + whoO.whoS;
   LogAndSetStatus(msgS);
-//return Instance.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 })
-  return Instance.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")})
-    .then(function(txHash) {
-      console.log("Split Tx: " + txHash);
-      return web3.eth.getTransactionReceiptMined(txHash);
-    }, e => SetStatusOnError(msgS, e))
-    .then(function() {
-      // The split() trans has been mined
-      console.log("Send to split() completed");
-      if (whoI == 2) {
-        // The send was from Alice, so a split to Bob and Carol would have been performed. Do the withdrawal for Bob, but not Carol, leaving Carol to hit her Withdraw button to get hers
-        console.log("A split from Alice has been performed. Now withdraw Bob's share");
-        msgS = "Withdrawing for Bob";
-        return Instance.withdraw({from: AllA[3].whoA}) // Bob
-          .then(txHash => {
-            console.log("Bob withdrawal Tx: " + txHash);
-            return web3.eth.getTransactionReceiptMined(txHash);
-          }, e => SetStatusOnError(msgS, e))
-          .then(function() {
-            // The withdraw() trans has been mined. Now update all balances
-            console.log("Withdrawal for Bob completed");
-            RefreshBalances();
-            SetStatus("Transaction complete!");
-          })
-      }else{
-        // The send was from other than Alice so no split would have happened. Just refresh
+//Instance.split({from: whoO.whoA, value: web3.toWei(amtD, "ether"), gas: 1000000 })
+  Instance.split({from: whoO.whoA, value: web3.toWei(amtD, "ether")})
+  .then(function(txHash) {
+    console.log("Split Tx: " + txHash);
+    return web3.eth.getTransactionReceiptMined(txHash);
+  })
+  .then(function() {
+    // The split() trans has been mined
+    console.log("Send to split() completed");
+    if (whoI == 2) {
+      // The send was from Alice, so a split to Bob and Carol would have been performed. Do the withdrawal for Bob, but not Carol, leaving Carol to hit her Withdraw button to get hers
+      console.log("A split from Alice has been performed. Now withdraw Bob's share");
+      msgS = "Withdrawing for Bob";
+      Instance.withdraw({from: AllA[3].whoA}) // Bob
+      .then(txHash => {
+        console.log("Bob withdrawal Tx: " + txHash);
+        return web3.eth.getTransactionReceiptMined(txHash);
+      })
+      .then(function() {
+        // The withdraw() trans has been mined. Now update all balances
+        console.log("Withdrawal for Bob completed");
         RefreshBalances();
         SetStatus("Transaction complete!");
-      }
-    })
+      }).catch(e => SetStatusOnError(msgS, e));
+    }else{
+      // The send was from other than Alice so no split would have happened. Just refresh
+      RefreshBalances();
+      SetStatus("Transaction complete!");
+    }
+  }).catch(e => SetStatusOnError(msgS, e));
 }
 
 // Fn for Carol to withdraw any pending withdrawal amounts for her
@@ -130,61 +165,30 @@ function CarolPull() {
   LogAndSetStatus(msgS);
   carolA = AllA[4].whoA;
   // See if there is anything to withdraw
-  return Instance.withdraw.call({from: carolA}) // .call() to get bool return and no transaction
-    .then(availB => {
-      if (!availB) {
-        LogAndSetStatus("Nothing is available for withdrawal");
-        return;
-      }
+  Instance.withdraw.call({from: carolA}) // .call() to get bool return and no transaction
+  .then(availB => {
+    if (availB) {
       // A withdrawal is available
       console.log("There is a withdrawal available");
       msgS = "Withdrawing for Carol";
-      return Instance.withdraw({from: carolA}) // do it i.e. not .call()
-        .then(txHash => {
-          console.log("Carol withdrawal Tx: " + txHash);
-          return web3.eth.getTransactionReceiptMined(txHash);
-        }, e => SetStatusOnError(msgS, e))
-        .then(function() {
-          // The withdraw() trans has been mined. Now update Carol's balance
-          SetBalance(4);
-          LogAndSetStatus("Withdrawal for Carol completed");
-        })
-    }, e => SetStatusOnError(msgS, e));
+      Instance.withdraw({from: carolA}) // do it i.e. not .call()
+      .then(txHash => {
+        console.log("Carol withdrawal Tx: " + txHash);
+        return web3.eth.getTransactionReceiptMined(txHash);
+      })
+      .then(function() {
+        // The withdraw() trans has been mined. Now update Carol's balance
+        SetBalance(4);
+        LogAndSetStatus("Withdrawal for Carol completed");
+      }).catch(e => SetStatusOnError(msgS, e));
+    }else
+      LogAndSetStatus("Nothing is available for withdrawal");
+  }).catch(e => SetStatusOnError(msgS, e));
 }
 
 // Event fns
 window.onload = function() {
-  // Add Xavier's helper function to wait for a transaction to be mined, to web3.eth
-  web3.eth.getTransactionReceiptMined = function(txnHash, interval) {
-    var transactionReceiptAsync;
-    interval = interval ? interval : 500;
-    transactionReceiptAsync = function(txnHash, resolve, reject) {
-      try {
-        var receipt = web3.eth.getTransactionReceipt(txnHash);
-        if (receipt == null) {
-          setTimeout(function() {
-            transactionReceiptAsync(txnHash, resolve, reject);
-          }, interval);
-        }else{
-          resolve(receipt);
-        }
-      } catch(e) {
-        reject(e);
-      }
-    };
-
-    if (Array.isArray(txnHash)) {
-      var promises = [];
-      txnHash.forEach(function(oneTxHash) {
-        promises.push(web3.eth.getTransactionReceiptMined(oneTxHash, interval));
-      });
-      return Promise.all(promises);
-    } else {
-      return new Promise(function(resolve, reject) {
-        transactionReceiptAsync(txnHash, resolve, reject);
-      });
-    }
-  };
+  AddGetTransactionReceiptMinedToWeb3();
   var contractA, ownerA, aliceA, bobA, carolA; // Addresses
   Instance = Splitter.deployed();
   // Addresses
@@ -194,23 +198,28 @@ window.onload = function() {
   contractA = Splitter.address;
   SetAddress(contractA, "Contract");
 
+  var msgS = "Getting Splitter version";
   Instance.getVersion.call()
   .then(result => {
     document.getElementById("Version").innerHTML = result;
+    msgS = "Getting Owner address";
     return Instance.getOwnerAddress.call();
-  }, e => SetStatusOnError("Getting Splitter version", e))
+  })
   .then(function(result) {
     SetAddress(ownerA = result, "Owner");
+    msgS = "Getting Alice address";
     return Instance.getAliceAddress.call();
-  }, e => SetStatusOnError("Getting Owner address", e))
+  })
   .then(result => {
     SetAddress(aliceA = result, "Alice");
+    msgS = "Getting Bob address";
     return Instance.getBobAddress.call();
-  }, e => SetStatusOnError("Getting Alice address", e))
+  })
   .then(result => {
     SetAddress(bobA = result, "Bob");
+    msgS = "Getting Carol address";
     return Instance.getCarolAddress.call();
-  }, e => SetStatusOnError("Getting Bob address", e))
+  })
   .then(result => {
     SetAddress(carolA = result, "Carol");
     // All addresses loaded
@@ -228,7 +237,7 @@ window.onload = function() {
     LogSplitReceipts();
     LogFallbackReceipts();
     LogWithdrawals();
-  }, e => SetStatusOnError("Getting Carol address", e));
+  }).catch(e => SetStatusOnError(msgS, e));
 } // end onload
 
 /* Event handlers
